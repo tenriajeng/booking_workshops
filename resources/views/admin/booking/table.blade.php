@@ -6,6 +6,8 @@
             <th>Status</th>
             <th>Order Date</th>
             <th>Schedule</th>
+            <th>Product</th>
+            <th>Keterangan</th>
             <th>ACTION</th>
         </tr>
     </thead>
@@ -35,6 +37,8 @@
                 {{ App\Models\Schedule::find($booking->schedule_id)->start .' - '.
                 App\Models\Schedule::find($booking->schedule_id)->end }}
             </td>
+            <td>{{ $booking->product_name }}</td>
+            <td>{{ $booking->keterangan }}</td>
             <td>
                 <div class="dropdown dropdown-inline">
                     <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
@@ -69,6 +73,8 @@
             <th>Status</th>
             <th>Order Date</th>
             <th>Schedule</th>
+            <th>Product</th>
+            <th>Keterangan</th>
             <th>ACTION</th>
         </tr>
     </tfoot>

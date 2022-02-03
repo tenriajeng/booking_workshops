@@ -31,6 +31,10 @@
                                     </select>
                                 </div>
                                 <div class="col-4">
+                                    <label for="keterangan" class="col-form-label text-right">Keterangan</label>
+                                    <input class="form-control" type="text" name="keterangan" id="keterangan">
+                                </div>
+                                <div class="col-4">
                                     <br>
                                     <input type="submit" value="Book" class="btn btn-primary" style="margin-top: 13px">
                                 </div>

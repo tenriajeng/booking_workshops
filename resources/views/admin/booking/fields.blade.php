@@ -5,16 +5,19 @@
 		<select class="form-control select2  @error('user_id') is-invalid @enderror" id="kt_select2_1" name="user_id">
 			<option></option>
 			@foreach (App\Models\User::all() as $item)
-			<option {{ ($item->id == $data->user_id) ? "selected" : "" }} value="{{ $item->id }}">
-				{{ $item->name }}
-			</option>
-			{{-- <option @isset($bookData) @if ($bookData->user_id == $item->id)
+			@if(request()->is('admin/booking/create'))
+			<option @isset($bookData) @if ($bookData->user_id == $item->id)
 				{{ "selected" }}
 				@endif
 				@endisset
 				value="{{ $item->id }}">
 				{{ $item->name }}
-			</option> --}}
+			</option>
+			@else
+			<option {{ ($item->id == $data->user_id) ? "selected" : "" }} value="{{ $item->id }}">
+				{{ $item->name }}
+			</option>
+			@endif
 			@endforeach
 		</select>
 
@@ -24,17 +27,36 @@
 		</span>
 		@enderror
 	</div>
+	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-2">
+		<label for="keterangan">Keterangan</label>
+		@if(request()->is('admin/booking/create'))
+			<input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan">
+		@else
+			<input type="text" class="form-control" name="keterangan" id="keterangan" value="{{ $data->keterangan }}" placeholder="Keterangan">
+		@endif
+	</div>
 	<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 pt-2">
 		<label>Order Date *</label>
-		<div class="input-group date" id="kt_datepicker_1" data-target-input="nearest">
-			<input type="text" name="order_date"
+		<div class="input-group date">
+			@if (request()->is('admin/booking/create'))
+				<input class="form-control" onchange="dateChange()" type="date" name="order_date" value="2021-10-11" id="example-date-input">	
+			@else
+				@php
+					$order_date = $data->order_date;
+					$order_date = substr($order_date, 0, 10);
+				@endphp
+				<input class="form-control" onchange="dateChange()" type="date" name="order_date" value="{{ $order_date }}" id="example-date-input">
+			@endif
+			
+			{{-- <input type="text" name="order_date"
 				class="form-control datetimepicker-input @error('order_date') is-invalid @enderror"
-				placeholder="Select date & time" data-target="#kt_datepicker_1" value="{{ $data->order_date }}" />
-			<div class="input-group-append" data-target="#kt_datepicker_1" data-toggle="datetimepicker">
+				placeholder="Select date & time" data-target="#kt_datepicker_1" value="" /> --}}
+				{{-- {{ $data->order_date }} --}}
+			{{-- <div class="input-group-append" data-target="#kt_datepicker_1" data-toggle="datetimepicker">
 				<span class="input-group-text">
 					<i class="ki ki-calendar"></i>
 				</span>
-			</div>
+			</div> --}}
 		</div>
 		@error('order_date')
 		<span class="invalid-feedback" role="alert">
@@ -47,9 +69,16 @@
 		<select class="form-control select2  @error('schedule') is-invalid @enderror" id="kt_select2_3"
 			name="schedule_id">
 			@foreach (App\Models\Schedule::all() as $schedule)
-			<option {{ ($data->schedule_id == $schedule->id) ? "selected" : "" }} value="{{ $schedule->id }}">
-				{{ $schedule->start }}-{{ $schedule->end }}
-			</option>
+			@if (request()->is('admin/booking/create'))
+				<option value="{{ $schedule->id }}">
+					{{ $schedule->start }}-{{ $schedule->end }}
+				</option>
+			@else
+				<option {{ ($data->schedule_id == $schedule->id) ? "selected" : "" }}  value="{{ $schedule->id }}">
+					{{ $schedule->start }}-{{ $schedule->end }}
+				</option>
+			@endif
+			
 			@endforeach
 		</select>
 		@error('schedule')
@@ -60,27 +89,30 @@
 	</div>
 	<div class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-12 pt-2">
 		<label>status *</label>
-		<select class="form-control select2  @error('status') is-invalid @enderror" id="kt_select2_2" name="status">
-			<option {{ ($data->status == 1) ? "selected" : "" }} value="1">Book</option>
-			<option {{ ($data->status == 2) ? "selected" : "" }} value="2">Process</option>
-			<option {{ ($data->status == 3) ? "selected" : "" }} value="3">Finished</option>
-			<option {{ ($data->status == 4) ? "selected" : "" }} value="4">Cancel</option>
-			<option {{ ($data->status == 5) ? "selected" : "" }} value="5">di Setujui</option>
-			{{-- <option @isset($bookData) @if ($bookData->status == 1) {{ "selected" }} @endif @endisset value="1">
-				Book
-			</option>
-			<option @isset($bookData) @if ($bookData->status == 2) {{ "selected" }} @endif @endisset value="2">
-				Process
-			</option>
-			<option @isset($bookData) @if ($bookData->status == 3) {{ "selected" }} @endif @endisset value="3">
-				Finished
-			</option>
-			<option @isset($bookData) @if ($bookData->status == 4) {{ "selected" }} @endif @endisset value="4">
-				Cancel
-			</option>
-			<option @isset($bookData) @if ($bookData->status == 5) {{ "selected" }} @endif @endisset value="5">
-				di Setujui
-			</option> --}}
+		<select class="form-control select2  @error('status') is-invalid @enderror" id="kt_select2_2" name="status">			
+			@if (request()->is('admin/booking/create'))
+				<option @isset($bookData) @if ($bookData->status == 1) {{ "selected" }} @endif @endisset value="1">
+					Book
+				</option>
+				<option @isset($bookData) @if ($bookData->status == 2) {{ "selected" }} @endif @endisset value="2">
+					Process
+				</option>
+				<option @isset($bookData) @if ($bookData->status == 3) {{ "selected" }} @endif @endisset value="3">
+					Finished
+				</option>
+				<option @isset($bookData) @if ($bookData->status == 4) {{ "selected" }} @endif @endisset value="4">
+					Cancel
+				</option>
+				<option @isset($bookData) @if ($bookData->status == 5) {{ "selected" }} @endif @endisset value="5">
+					di Setujui
+				</option>
+			@else
+				<option {{ ($data->status == 1) ? "selected" : "" }} value="1">Book</option>
+				<option {{ ($data->status == 2) ? "selected" : "" }} value="2">Process</option>
+				<option {{ ($data->status == 3) ? "selected" : "" }} value="3">Finished</option>
+				<option {{ ($data->status == 4) ? "selected" : "" }} value="4">Cancel</option>
+				<option {{ ($data->status == 5) ? "selected" : "" }} value="5">di Setujui</option>
+			@endif
 		</select>
 		@error('status')
 		<span class="invalid-feedback" role="alert">

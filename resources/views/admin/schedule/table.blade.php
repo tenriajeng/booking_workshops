@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>NO</th>
-            <th>Label</th>
+            <th>Keterangan Waktu</th>
             <th>Start Time</th>
             <th>End Time</th>
             <th>ACTION</th>
