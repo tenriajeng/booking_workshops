@@ -24,6 +24,9 @@ class BookingController extends Controller
     public function index()
     {
         $data = Booking::orderBy('updated_at', 'DESC')->get();
+        // dd($data);
+        // $produk = BookingProduct::where('booking_id', $data->id)->get();
+        // dd($data);
         return view('admin.booking.index')->with('data', $data);
     }
 
@@ -56,13 +59,33 @@ class BookingController extends Controller
         ]);
 
         $dataRecord = $request->all();
+
+        if (isset($dataRecord['product'])) {
+            $product_name = [];
+            foreach ($dataRecord['product'] as $index => $product_id) {
+                $product = Product::find($product_id);
+                $product_name[$index] = $product->name;
+            }
+            $product_name = implode(" & ", $product_name);
+        } else {
+            $product_name = [];
+        }
+
         $order_date = date_create($dataRecord['order_date']);
         $dataRecord['order_date'] = $order_date;
         $dataBook = Booking::where('status', '!=', '3')->where('schedule_id', $dataRecord['schedule_id'])->whereDate('order_date', $order_date)->first();
 
         // dd($dataBook);
         if (is_null($dataBook)) {
-            $book = Booking::create($dataRecord);
+            // $book = Booking::create($dataRecord);
+            $book = Booking::create([
+                'user_id' => $request->user_id,
+                'schedule_id' => $request->schedule_id,
+                'product_name' => $product_name,
+                'keterangan' => $request->keterangan,
+                'order_date' => $request->order_date,
+                'status' => 1,
+            ]);
             if (isset($dataRecord['product'])) {
                 foreach ($dataRecord['product'] as $product_id) {
                     $product = Product::find($product_id);

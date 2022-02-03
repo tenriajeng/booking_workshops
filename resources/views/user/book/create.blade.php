@@ -1,43 +1,67 @@
 @extends('layouts._app')
 
 @push('page_style')
-    @include('layouts.user.css')
+@include('layouts.user.css')
 @endpush
 
 @section('content')
-    @include('sweetalert::alert')
-
-    <!-- Body Inner -->
-    <div class="body-inner">
-        <!-- Header -->
-        @include('layouts.user.header')
-        <!--end: Inspiro Slider -->
-        <!-- Page Content -->
-        <section id="page-content">
-            <div class="container">
-                <div class="row">
-                    <div class="content col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Chose Date, Time And Parts if you need</h3>
+<!-- Page Content -->
+<section id="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="content col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Chose Date, Time And Parts if you need</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('book.store') }}">
+                            @csrf
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <label for="example-date-input" class="col-form-label text-right">Date</label>
+                                    <input class="form-control" onchange="dateChange()" type="date" name="order_date"
+                                        value="2021-10-11" id="example-date-input">
+                                </div>
+                                <div class="col-4" id="selectTime">
+                                    <label for="example-date-input" class="col-form-label text-right">Time</label>
+                                    <select id="inputState" name="schedule_id" class="form-control">
+                                        <option> Choose Time </option>
+                                        @foreach ($schedules as $schedule)
+                                        <option value="{{ $schedule->id }}">
+                                            {{ $schedule->start }} - {{ $schedule->end }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="keterangan" class="col-form-label text-right">Keterangan</label>
+                                    <input class="form-control" type="text" name="keterangan" id="keterangan">
+                                </div>
+                                <div class="col-4">
+                                    <br>
+                                    <input type="submit" value="Book" class="btn btn-primary" style="margin-top: 13px">
+                                </div>
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="{{ route('book.store') }}">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-4">
-                                            <label for="example-date-input" class="col-form-label text-right">Date</label>
+                                            <label for="example-date-input"
+                                                class="col-form-label text-right">Date</label>
                                             <input class="form-control" onchange="dateChange()" type="date"
                                                 name="order_date" value="2021-10-11" id="example-date-input">
                                         </div>
                                         <div class="col-4" id="selectTime">
-                                            <label for="example-date-input" class="col-form-label text-right">Time</label>
+                                            <label for="example-date-input"
+                                                class="col-form-label text-right">Time</label>
                                             <select id="inputState" name="schedule_id" class="form-control">
                                                 <option> Choose Time </option>
                                                 @foreach ($schedules as $schedule)
-                                                    <option value="{{ $schedule->id }}">
-                                                        {{ $schedule->start }} - {{ $schedule->end }}
-                                                    </option>
+                                                <option value="{{ $schedule->id }}">
+                                                    {{ $schedule->start }} - {{ $schedule->end }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -52,24 +76,24 @@
                                 </form>
                                 @include('user.book.product')
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- end: Page Content -->
-        <!-- Footer -->
-        @include('layouts.user.footer')
-        <!-- end: Footer -->
-    </div>
+        </div>
+</section>
+<!-- end: Page Content -->
+<!-- Footer -->
+@include('layouts.user.footer')
+<!-- end: Footer -->
+</div>
 
 @endsection
 
 @push('page_script')
-    @include('layouts.user.js')
+@include('layouts.user.js')
 
-    <script>
-        let i = 0;
+<script>
+    let i = 0;
 
         function add(data, id) {
             console.log(data);
@@ -137,5 +161,5 @@
                 }
             );
         }
-    </script>
+</script>
 @endpush

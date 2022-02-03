@@ -15,7 +15,9 @@ class Booking extends Model
         'order_date',
         'start',
         'end',
-        'schedule_id'
+        'schedule_id',
+        'product_name',
+        'keterangan'
     ];
 
     public function user()

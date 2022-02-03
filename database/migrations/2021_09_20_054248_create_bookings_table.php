@@ -17,7 +17,9 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('schedule_id');
+            $table->string('product_name')->nullable();
             $table->integer('status');
+            $table->string('keterangan')->nullable();
             $table->dateTime('order_date');
             $table->timestamps();
         });

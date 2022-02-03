@@ -9,6 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'keterangan',
         'text',
         'start',
         'end',
