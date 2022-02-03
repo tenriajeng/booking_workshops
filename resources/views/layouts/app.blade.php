@@ -5,52 +5,20 @@
 <head>
     <base href="">
     <meta charset="utf-8" />
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> {{ config('app.name', 'Laravel') }}</title>
 
     {{-- GOOGLE META --}}
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34=" />
-    {{-- dinamic meta --}}
-    <meta name="description"
-        content="Author: A.N. Author, Illustrator: P. Picture, Category: Books, Price:  £9.24, Length: 784 pages">
-    <meta name="keywords" content="jakarta notebook">
-
-    {{-- TWITTER META --}}
-    <meta name="twitter:card" content="summary" /> {{-- “summary”, “summary_large_image”, “app”, or “player”. --}}
-    <meta name="twitter:site" content="@sejawat_id" />
-    <meta name="twitter:creator" content="@sejawat_id" />
-    <meta name="twitter:domain" content="https://sejawat.co.id/">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- dinamic meta --}}
-    <meta name="twitter:url" content="{{ url()->full() }}">
-    <meta name="twitter:title"
-        content="Google updates Passes API to store COVID vaccination and testing information on Android devices">
-    <meta name="twitter:image"
-        content="https://1.bp.blogspot.com/-XFeiNnY2l9M/YNtfTo9kt5I/AAAAAAAAKZA/XMUI8HFkIScYwoFDOxPT68hozB7NYYBoQCLcBGAsYHQ/s0/%255BGD%2BBLOG%255D%2BCovid%2Bcards%2B1.png">
-    <meta name="twitter:description"
-        content="Google has updated its Passes API to enable a simple and secure way to store and access COVID vaccination and test cards on Android devices.">
-
-    {{-- FACEBOOK META --}}
-    <meta property="og:type" content="article" />
+    <meta name="description" content="">
+    <meta name="keywords" content=" notebook">
 
     {{-- dinamic meta --}}
     <meta property="og:url" content="{{ url()->full() }}" />
-    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description" content="How much does culture influence creative thinking?" />
-    <meta property="og:image"
-        content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
-    {{-- <meta name="description" --}} {{-- content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." /> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="canonical" href="https://keenthemes.com/metronic" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
-    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
-    <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.css') }} " rel="stylesheet"
-        type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
     <link href="{{ asset('plugins/global/plugins.bundle.css') }} " rel="stylesheet" type="text/css" />
@@ -63,10 +31,6 @@
     <link href="{{ asset('css/themes/layout/brand/light.css') }} " rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/themes/layout/aside/light.css') }} " rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="icon" href="https://sejawat.co.id/images/sejawat-logo-mobile.png">
-    <link rel="icon" sizes="48x48" href="https://sejawat.co.id/images/sejawat-logo-mobile.png">
-    <link rel="icon" sizes="96x96" href="https://sejawat.co.id/images/sejawat-logo-mobile.png">
-    <link rel="icon" sizes="144x144" href="https://sejawat.co.id/images/sejawat-logo-mobile.png">
     @laravelPWA
     <style>
         .deleteButton:hover {
@@ -140,16 +104,9 @@
         </span>
     </div>
 
-
-    {{-- @php
-    dd(json_decode(Session::get('error')))
-    @endphp --}}
     <!--end::Scrolltop-->
 
     @include('layouts.firebase_script')
-    <script>
-        var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
-    </script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
         var KTAppSettings = {
@@ -218,10 +175,10 @@
     <script src="{{ asset('js/scripts.bundle.js') }}"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script> --}}
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="{{ asset('js/pages/widgets.js') }}"></script>
+    {{-- <script src="{{ asset('js/pages/widgets.js') }}"></script> --}}
     <!--end::Page Scripts-->
     @stack('page_script')
     <script src="{{ asset('js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
@@ -260,13 +217,6 @@
             };
 
             toastr.error("{{ $message }}");
-            // Swal.fire({
-            //     position: "top-right",
-            //     icon: "error",
-            //     title: "{{ $message }}",
-            //     showConfirmButton: false,
-            //     timer: 2000
-            // });
         </script>
         {{ Session::forget('error') }}
     @endif

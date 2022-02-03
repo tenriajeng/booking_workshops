@@ -1,4 +1,8 @@
-@extends('layouts.user.app')
+@extends('layouts._app')
+
+@push('page_style')
+@include('layouts.user.css')
+@endpush
 
 @section('content')
 <!-- Page Content -->
@@ -54,8 +58,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </section>
 <!-- end: Page Content -->
+<!-- Footer -->
+@include('layouts.user.footer')
+<!-- end: Footer -->
+</div>
+
 @endsection
+
+@push('page_script')
+@include('layouts.user.js')
+@endpush

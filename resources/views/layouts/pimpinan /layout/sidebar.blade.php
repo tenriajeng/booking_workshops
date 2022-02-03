@@ -75,13 +75,13 @@
                     </a>
                 </li>
                 <li class="menu-section">
-                    <h4 class="menu-text">User Section</h4>
+                    <h4 class="menu-text">Admin Section</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
 
                 <li class="menu-item menu-item {{ Request::is('admin/user*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
-                    <a href="{{ route('admin.user.index') }}" class="menu-link">
+                    <a href="{{ route('pimpinan.home') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Shield-user.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -101,18 +101,18 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">User</span>
+                        <span class="menu-text">Admin</span>
                     </a>
                 </li>
 
                 <li class="menu-section">
-                    <h4 class="menu-text">Booking Section</h4>
+                    <h4 class="menu-text">Laporan</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
 
                 <li class="menu-item menu-item {{ Request::is('admin/booking*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
-                    <a href="{{ route('booking.index') }}" class="menu-link">
+                    <a href="{{ route('LDpengguna') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Time-schedule.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -129,12 +129,12 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Booking</span>
+                        <span class="menu-text">Data Pengguna</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item {{ Request::is('admin/schedule*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
-                    <a href="{{ route('schedule.index') }}" class="menu-link">
+                    <a href="{{ route('LDproduct') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Timer.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -157,52 +157,35 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Schedule</span>
+                        <span class="menu-text">Data Product</span>
                     </a>
                 </li>
-
-                <li class="menu-section">
-                    <h4 class="menu-text">Product Section</h4>
-                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
-
-                <li class="menu-item menu-item {{ Request::is('admin/product*') ? 'menu-item-active' : '' }}"
+                <li class="menu-item menu-item {{ Request::is('admin/schedule*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
-                    <a href="{{ route('product.index') }}" class="menu-link">
+                    <a href="{{ route('LDtransaksi') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Files\Folder-solid.svg--><svg
+                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Timer.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <rect x="0" y="0" width="24" height="24" />
                                     <path
-                                        d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z"
-                                        fill="#000000" />
-                                </g>
-                            </svg>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-text">Product</span>
-                    </a>
-                </li>
-
-                <li class="menu-item menu-item {{ Request::is('admin/category*') ? 'menu-item-active' : '' }}"
-                    aria-haspopup="true">
-                    <a href="{{ route('category.index') }}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\Media\Pause.svg--><svg
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <rect x="0" y="0" width="24" height="24" />
+                                        d="M12,21 C7.581722,21 4,17.418278 4,13 C4,8.581722 7.581722,5 12,5 C16.418278,5 20,8.581722 20,13 C20,17.418278 16.418278,21 12,21 Z"
+                                        fill="#000000" opacity="0.3" />
                                     <path
-                                        d="M8,6 L10,6 C10.5522847,6 11,6.44771525 11,7 L11,17 C11,17.5522847 10.5522847,18 10,18 L8,18 C7.44771525,18 7,17.5522847 7,17 L7,7 C7,6.44771525 7.44771525,6 8,6 Z M14,6 L16,6 C16.5522847,6 17,6.44771525 17,7 L17,17 C17,17.5522847 16.5522847,18 16,18 L14,18 C13.4477153,18 13,17.5522847 13,17 L13,7 C13,6.44771525 13.4477153,6 14,6 Z"
+                                        d="M13,5.06189375 C12.6724058,5.02104333 12.3386603,5 12,5 C11.6613397,5 11.3275942,5.02104333 11,5.06189375 L11,4 L10,4 C9.44771525,4 9,3.55228475 9,3 C9,2.44771525 9.44771525,2 10,2 L14,2 C14.5522847,2 15,2.44771525 15,3 C15,3.55228475 14.5522847,4 14,4 L13,4 L13,5.06189375 Z"
+                                        fill="#000000" />
+                                    <path
+                                        d="M16.7099142,6.53272645 L17.5355339,5.70710678 C17.9260582,5.31658249 18.5592232,5.31658249 18.9497475,5.70710678 C19.3402718,6.09763107 19.3402718,6.73079605 18.9497475,7.12132034 L18.1671361,7.90393167 C17.7407802,7.38854954 17.251061,6.92750259 16.7099142,6.53272645 Z"
+                                        fill="#000000" />
+                                    <path
+                                        d="M11.9630156,7.5 L12.0369844,7.5 C12.2982526,7.5 12.5154733,7.70115317 12.5355117,7.96165175 L12.9585886,13.4616518 C12.9797677,13.7369807 12.7737386,13.9773481 12.4984096,13.9985272 C12.4856504,13.9995087 12.4728582,14 12.4600614,14 L11.5399386,14 C11.2637963,14 11.0399386,13.7761424 11.0399386,13.5 C11.0399386,13.4872031 11.0404299,13.4744109 11.0414114,13.4616518 L11.4644883,7.96165175 C11.4845267,7.70115317 11.7017474,7.5 11.9630156,7.5 Z"
                                         fill="#000000" />
                                 </g>
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Category</span>
+                        <span class="menu-text">Data Transaksi</span>
                     </a>
                 </li>
             </ul>

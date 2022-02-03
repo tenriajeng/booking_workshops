@@ -55,6 +55,7 @@ Route::post('/store-token', [App\Http\Controllers\HomeController::class, 'saveTo
 // Route::post('/send-web-notification', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');
 Route::prefix('admin')->group(function () {
     // Route::get('/', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.home');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 
     // User
     Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.user.index');

@@ -1,4 +1,8 @@
-@extends('layouts.user.app')
+@extends('layouts._app')
+
+@push('page_style')
+@include('layouts.user.css')
+@endpush
 
 @section('content')
 <!-- Page Content -->
@@ -39,25 +43,61 @@
                                     <input type="submit" value="Book" class="btn btn-primary" style="margin-top: 13px">
                                 </div>
                             </div>
-                            <div id="item">
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('book.store') }}">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="example-date-input"
+                                                class="col-form-label text-right">Date</label>
+                                            <input class="form-control" onchange="dateChange()" type="date"
+                                                name="order_date" value="2021-10-11" id="example-date-input">
+                                        </div>
+                                        <div class="col-4" id="selectTime">
+                                            <label for="example-date-input"
+                                                class="col-form-label text-right">Time</label>
+                                            <select id="inputState" name="schedule_id" class="form-control">
+                                                <option> Choose Time </option>
+                                                @foreach ($schedules as $schedule)
+                                                <option value="{{ $schedule->id }}">
+                                                    {{ $schedule->start }} - {{ $schedule->end }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <br>
+                                            <input type="submit" value="Book" class="btn btn-primary"
+                                                style="margin-top: 13px">
+                                        </div>
+                                    </div>
+                                    <div id="item">
+                                    </div>
+                                </form>
+                                @include('user.book.product')
                             </div>
-                        </form>
-                        @include('user.book.product')
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- end: Page Content -->
+<!-- Footer -->
+@include('layouts.user.footer')
+<!-- end: Footer -->
+</div>
+
 @endsection
 
 @push('page_script')
+@include('layouts.user.js')
+
 <script>
-    let i = 0; 
-	function add(data,id) {
-		console.log(data);
-		let item = `
+    let i = 0;
+
+        function add(data, id) {
+            console.log(data);
+            let item = `
         <div class="form-group row align-items-center" id="row[${i}]">
 			<input type="hidden" value="${data.id}" name="product[${i}]"> 
             <div class="col-lg-4 col-md-4 col-sm-12 col-12 pt-2">
@@ -80,42 +120,46 @@
             </div>
         </div>
         `;
-        i++;
-        $("#item").append(item);  
-	}
-    $(document).ready(function() {
-       
-        let today = new Date();
-        
-        document.getElementById("example-date-input").value = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    });
-
-    function deleteBtn(id){
-        let myobj = `row[${id}]`
-        myobj = document.getElementById(myobj);
-        myobj.remove();
-    }
-    
-    async function dateChange() {
-
-        let date = document.getElementById("example-date-input").value;
-        let selectTime = document.getElementById("inputState");
-        if(selectTime != null){
-            selectTime.remove()
+            i++;
+            $("#item").append(item);
         }
-        console.log(selectTime);
-        $("#selectTime").append(`<select id="inputState" name="time" class="form-control"><option >  Choose Time  </option> </select>`); 
+        $(document).ready(function() {
 
-        $.get(
-            `/schedule/${date}`,
-            function (res) {  
-                console.log(res);
-                res.forEach((data) => {
-                    let component = `<option value="${data.id}" >  ${data.start} - ${data.start}  </option>`
-                    $("#inputState").append(component);
-                }); 
+            let today = new Date();
+
+            document.getElementById("example-date-input").value = today.getFullYear() + '-' + (today.getMonth() +
+                1) + '-' + today.getDate();
+        });
+
+        function deleteBtn(id) {
+            let myobj = `row[${id}]`
+            myobj = document.getElementById(myobj);
+            myobj.remove();
+        }
+
+        async function dateChange() {
+
+            let date = document.getElementById("example-date-input").value;
+            let selectTime = document.getElementById("inputState");
+            if (selectTime != null) {
+                selectTime.remove()
             }
-        );
-    }
+            console.log(selectTime);
+            $("#selectTime").append(
+                `<select id="inputState" name="time" class="form-control"><option >  Choose Time  </option> </select>`
+            );
+
+            $.get(
+                `/schedule/${date}`,
+                function(res) {
+                    console.log(res);
+                    res.forEach((data) => {
+                        let component =
+                            `<option value="${data.id}" >  ${data.start} - ${data.start}  </option>`
+                        $("#inputState").append(component);
+                    });
+                }
+            );
+        }
 </script>
 @endpush

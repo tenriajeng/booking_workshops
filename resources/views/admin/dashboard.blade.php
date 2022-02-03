@@ -1,21 +1,11 @@
 @extends('layouts._app')
 
-@push('page_style')
-    @include('layouts.admin.css')
-    <link href="{{ asset('plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-@endpush
-
-@push('page_script')
-    @include('layouts.admin.js')
-    <script src="{{ asset('plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('js/pages/crud/datatables/extensions/responsive_lecturer.js') }}"></script>
-@endpush
-
 @push('title_page')
-    User
+    Dashboard
 @endpush
 
 @section('content')
+
     @include('layouts.admin.mobile_header')
 
     <div class="d-flex flex-column flex-root">
@@ -29,9 +19,7 @@
                 @include('layouts.admin.header')
 
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-
                     @include('layouts.admin.subheader')
-
                     <div class="d-flex flex-column-fluid">
                         <div class="container">
 
@@ -39,22 +27,11 @@
                             <div class="card card-custom">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <h3 class="card-label">User List</h3>
-                                    </div>
-                                    <div class="card-toolbar">
-                                        <!--begin::Button-->
-                                        <a href="{{ route('admin.user.create') }}"
-                                            class="btn btn-primary font-weight-bolder">
-                                            <i class="la la-plus"></i>
-                                            New Record
-                                        </a>
-                                        <!--end::Button-->
+                                        <h3 class="card-label">Dashboard </h3>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <!--begin: Datatable-->
-                                    @include('admin.user.table')
-                                    <!--end: Datatable-->
+                                    <h1>Welcome to Dashboard</h1>
                                 </div>
                             </div>
                             <!--end::Content-->
@@ -73,3 +50,11 @@
     </div>
 
 @endsection
+
+@push('page_style')
+    @include('layouts.admin.css')
+@endpush
+
+@push('page_script')
+    @include('layouts.admin.js')
+@endpush

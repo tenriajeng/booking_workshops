@@ -16,29 +16,29 @@
             </thead>
             <tbody>
                 @php
-                $no = 1;
+                    $no = 1;
                 @endphp
                 @foreach ($products as $value)
-                <tr>
-                    <td>{{ $no++}}</td>
-                    <td>
-                        <div class="symbol symbol-50 symbol-light mr-2">
-                            <span class="symbol-label">
-                                <img src="{{ $value->image ?? ''  }}" style="height: 20px;"
-                                    class="h-50 align-self-center" alt="">
-                            </span>
-                        </div>
-                    </td>
-                    <td>{{ App\Models\Category::find($value->category_id)->name }}</td>
-                    <td>{{ $value->name }}</td>
-                    <td>@currency($value->price)</td>
-                    <td>{{ $value->stock }}</td>
-                    <td>{{ $value->description }}</td>
-                    <td>{{ $value->status == 1 ? 'Publish' : 'Draft' }}</td>
-                    <td>
-                        <a class="btn btn-primary" onclick="add({{ $value, $value->category->name }})">Add</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>
+                            <div class="symbol symbol-50 symbol-light mr-2">
+                                <span class="symbol-label">
+                                    <img src="{{ $value->image ?? '' }}" style="height: 20px;"
+                                        class="h-50 align-self-center" alt="">
+                                </span>
+                            </div>
+                        </td>
+                        <td>{{ App\Models\Category::find($value->category_id)->name }}</td>
+                        <td>{{ $value->name }}</td>
+                        <td>@currency($value->price)</td>
+                        <td>{{ $value->stock }}</td>
+                        <td>{{ $value->description }}</td>
+                        <td>{{ $value->status == 1 ? 'Publish' : 'Draft' }}</td>
+                        <td>
+                            <a class="btn btn-primary" onclick="add({{ $value, $value->category->name }})">Add</a>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
             <tfoot>

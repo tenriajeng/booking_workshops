@@ -1,7 +1,9 @@
-@extends('layouts.user.app')
+@extends('layouts._app')
 
 @section('content')
 
-    <h1>You are currently not connected to any networks.</h1>
+
+    <h3>Anda Sedang Offline, Silahkan Cek Koneksi Internet Anda</h3>
+
 
 @endsection
