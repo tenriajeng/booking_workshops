@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class LDataTransaksiController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         // $data = DB::table('bookings')
         // ->where('status', '1')
         // ->get();
         $data = Booking::orderBy('updated_at', 'DESC')->get();
-        
-        return view('pimpinan.LDataTransaksi', compact('data'));        
+
+        // dd($data);
+        return view('pimpinan.LDataTransaksi', compact('data'));
     }
 }

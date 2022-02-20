@@ -52,7 +52,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta property="og:image"
         content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
-    {{-- <meta name="description" --}} {{-- content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." /> --}}
+    {{--
+    <meta name="description" --}} {{--
+        content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
+    --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="canonical" href="https://keenthemes.com/metronic" />
     <!--begin::Fonts-->
@@ -61,8 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
     {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.css') }} " rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.css') }} " rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
     <link href="{{ asset('plugins/global/plugins.bundle.css') }} " rel="stylesheet" type="text/css" />
@@ -84,7 +86,6 @@ License: You must have a valid license purchased only from themeforest(the above
         .deleteButton:hover {
             cursor: pointer;
         }
-
     </style>
     @stack('page_style')
 </head>
@@ -238,22 +239,22 @@ License: You must have a valid license purchased only from themeforest(the above
     @stack('page_script')
     <script src="{{ asset('js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
     @if ($message = Session::get('sukses'))
-        <script>
-            Swal.fire({
+    <script>
+        Swal.fire({
                 position: "top-right",
                 icon: "success",
                 title: "{{ $message }}",
                 showConfirmButton: false,
                 timer: 2000
             });
-        </script>
-        {{ Session::forget('sukses') }}
+    </script>
+    {{ Session::forget('sukses') }}
     @endif
 
     @if ($message = Session::get('error'))
 
-        <script>
-            toastr.options = {
+    <script>
+        toastr.options = {
                 "closeButton": false,
                 "debug": false,
                 "newestOnTop": false,
@@ -279,8 +280,8 @@ License: You must have a valid license purchased only from themeforest(the above
             //     showConfirmButton: false,
             //     timer: 2000
             // });
-        </script>
-        {{ Session::forget('error') }}
+    </script>
+    {{ Session::forget('error') }}
     @endif
     <script>
         function deleteFunction(id) {

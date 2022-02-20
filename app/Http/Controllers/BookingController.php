@@ -78,8 +78,6 @@ class BookingController extends Controller
                 $product = Product::find($product_id);
                 $product->stock -= 1;
                 $product->save();
-
-
                 $BookingProduct = new BookingProduct;
                 $BookingProduct->product_id = $product->id;
                 $BookingProduct->booking_id = $book->id;
