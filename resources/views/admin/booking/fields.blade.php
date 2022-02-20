@@ -27,7 +27,7 @@
         </span>
         @enderror
     </div>
-    
+
 
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 pt-2">
         <label>Jenis Services *</label>
@@ -65,12 +65,8 @@
 
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-2">
         <label for="price">Price</label>
-        @if(request()->is('admin/booking/create'))
-        <input type="text" class="form-control" name="price" id="price" placeholder="Price">
-        @else
-        <input type="text" class="form-control" name="price" id="price" value="{{ $data->price }}"
+        <input type="text" class="form-control" disabled name="price" id="price" value="{{ $data->price  ?? ''}}"
             placeholder="price">
-        @endif
     </div>
 
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 pt-2">
@@ -164,6 +160,36 @@
 </div>
 
 <div id="item">
+    @isset($booking_products)
+
+    @foreach ($booking_products as $key => $booking_product)
+    <div class="form-group row align-items-center" id="row[{{ $key }}]">
+        <input type="hidden" value="{{ $booking_product->product_id }}" name="product[{{ $key }}]">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-12 pt-2">
+            <label>Product {{ $key }}</label>
+            <input disabled type="text" value="{{ App\Models\Product::find($booking_product->product_id)->name }}"
+                class="form-control" />
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-12 pt-2">
+            <label>Category </label>
+            <input disabled type="text"
+                value="{{ App\Models\Product::find($booking_product->product_id)->category->name }}"
+                class="form-control" />
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-12 pt-2">
+            <label>Price </label>
+            <input disabled type="text" value="{{ App\Models\Product::find($booking_product->product_id)->price }}"
+                class="form-control" />
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-6 col-6 pt-2">
+            <a href="javascript:;" onclick="deleteBtn({{ $key }})"
+                class="btn btn-sm font-weight-bolder btn-light-danger mt-7">
+                <i class="la la-trash-o"></i>Delete
+            </a>
+        </div>
+    </div>
+    @endforeach
+    @endisset
 </div>
 
 @include('admin.booking.product')

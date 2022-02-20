@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\BookingProduct;
 use App\Models\Product;
+use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,7 +59,9 @@ class BookingController extends Controller
         } else {
             $product_name = [];
         }
-
+        // dd($input);
+        $service = Services::find($input['services_id']);
+        $price += $service->price;
 
         // dd($input);
         // $book = Booking::create($input);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\BookingProduct;
 use App\Models\Product;
+use App\Models\Services;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\ObjectType;
@@ -135,8 +136,12 @@ class BookingController extends Controller
         $data = Booking::where('id', $id)->first();
         // dd($data);
         $products = Product::orderBy('created_at', 'DESC')->get();
+        $booking_products = BookingProduct::where('booking_id', $id)->get();
 
-        return view('admin.booking.update')->with('data', $data)->with('products', $products);
+        return view('admin.booking.update')
+            ->with('data', $data)
+            ->with('products', $products)
+            ->with('booking_products', $booking_products);
     }
 
     /**
@@ -158,12 +163,35 @@ class BookingController extends Controller
             'order_date' => 'required',
         ]);
         $dataRecord = $request->all();
+
         $order_date = date_create($dataRecord['order_date']);
         $dataRecord['order_date'] = date('Y-m-d H:i:s', strtotime($dataRecord['order_date']));
 
         $dataBook = Booking::where('status', '!=', '3')->where('schedule_id', $dataRecord['schedule_id'])->whereDate('order_date', $order_date)->first();
 
+        BookingProduct::where('booking_id', $id)->delete();
 
+        $price = 0;
+        if (isset($dataRecord['product'])) {
+            foreach ($dataRecord['product'] as $product_id) {
+                $product = Product::find($product_id);
+                $product->stock -= 1;
+                $price += $product->price;
+
+                $product->save();
+                $BookingProduct = new BookingProduct;
+                $BookingProduct->product_id = $product->id;
+                $BookingProduct->booking_id = $id;
+                $BookingProduct->product_name = $product->name;
+                $BookingProduct->price = $product->price;
+                $BookingProduct->save();
+            }
+        }
+
+        $service = Services::find($dataRecord['services_id']);
+        $price += $service->price;
+
+        $dataRecord['price'] = $price;
         $booking->update($dataRecord);
 
         return redirect(route('booking.index'));
