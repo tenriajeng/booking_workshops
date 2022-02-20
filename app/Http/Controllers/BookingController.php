@@ -40,6 +40,7 @@ class BookingController extends Controller
     {
         $input = $request->all();
         
+        // $input['schedule_id'] = $input['time'];
         $input['schedule_id'] = $input['time'];
         $input['user_id'] = Auth::user()->id;
         $input['status'] = 1;
@@ -54,12 +55,15 @@ class BookingController extends Controller
             $product_name = [];
         }
 
+        // dd($input);
         // $book = Booking::create($input);
         $book = Booking::create([
             'user_id' => Auth::user()->id,
-            'schedule_id' => $request->time,
+            'schedule_id' => $request->schedule_id,
+            'services_id' => $request->services_id,
             'product_name' => $product_name,
             'keterangan' => $request->keterangan,
+            'price' => $request->price,
             'order_date' => $request->order_date,
             'status' => 1,
         ]);

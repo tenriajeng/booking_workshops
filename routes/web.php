@@ -87,6 +87,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/schedule/update/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'update'])->name('admin.schedule.update');
     Route::get('/schedule/delete/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'destroy'])->name('admin.schedule.delete');
 
+    //Services
+    Route::resource('services', App\Http\Controllers\Admin\ServicesController::class);
+    Route::get('/services/edit/{id}', [App\Http\Controller\Admin\ServicesController::class, 'edit'])->name('admin.services.edit');
+    Route::get('/services/update/{id}', [App\Http\Controller\Admin\ServicesController::class, 'update'])->name('admin.services.update');
+    // Route::get('/services/delete/{id}', [App\Http\Controller\Admin\ServicesController::class, 'destroy'])->name('admin.services.delete');
+    Route::get('/services/delete/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'destroy'])->name('admin.services.delete');
+
+
 
 
     //Product

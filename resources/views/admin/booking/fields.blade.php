@@ -27,6 +27,32 @@
         </span>
         @enderror
     </div>
+    
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 pt-2">
+        <label>Jenis Services *</label>
+        <select class="form-control select2  @error('services') is-invalid @enderror" id="kt_select2_4"
+            name="services_id">
+            @foreach (App\Models\Services::all() as $services)
+            @if (request()->is('admin/booking/create'))
+            <option value="{{ $services->id }}">
+                {{ $services->name }}
+            </option>
+            @else
+            <option {{ ($data->services_id == $services->id) ? "selected" : "" }} value="{{ $services->id }}">
+                {{ $services->name }}
+            </option>
+            @endif
+
+            @endforeach
+        </select>
+        @error('services')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-2">
         <label for="keterangan">Keterangan</label>
         @if(request()->is('admin/booking/create'))
@@ -36,6 +62,17 @@
             placeholder="Keterangan">
         @endif
     </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-2">
+        <label for="price">Price</label>
+        @if(request()->is('admin/booking/create'))
+        <input type="text" class="form-control" name="price" id="price" placeholder="Price">
+        @else
+        <input type="text" class="form-control" name="price" id="price" value="{{ $data->price }}"
+            placeholder="price">
+        @endif
+    </div>
+
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 pt-2">
         <label>Order Date *</label>
         <div class="input-group date">
@@ -90,6 +127,7 @@
         </span>
         @enderror
     </div>
+
     <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-12 pt-2">
         <label>status *</label>
         <select class="form-control select2  @error('status') is-invalid @enderror" id="kt_select2_2" name="status">
@@ -197,6 +235,9 @@
 
                 $('#kt_select2_3').select2({
                     placeholder: "Select Time"
+                });
+                $('#kt_select2_4').select2({
+                    placeholder: "Select Service"
                 });
 
                 $('#kt_select2_103').select2({

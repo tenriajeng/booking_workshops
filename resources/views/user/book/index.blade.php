@@ -4,6 +4,9 @@
 @include('layouts.user.css')
 @endpush
 
+<div class="body-inner">
+        <!-- Header -->
+        @include('layouts.user.header')
 @section('content')
 <!-- Page Content -->
 <section id="page-content">
@@ -21,7 +24,9 @@
                                         <th>Order ID</th>
                                         <th>Order Date</th>
                                         <th>Order Status</th>
+                                        <th>Jenis Service</th>
                                         <th>Keterangan</th>
+                                        <th>Price</th>
                                         <th>Detail</th>
                                     </tr>
                                 </thead>
@@ -46,7 +51,11 @@
                                             di Setujui
                                             @endif
                                         </td>
+                                        <td>
+                                            {{ App\Models\Services::find($booking->services_id)->name}}
+                                        </td>
                                         <td>{{ $booking->keterangan }}</td>
+                                        <td>{{ $booking->price }}</td>
                                         <td>
                                             <a href="{{ route('book.show',$booking->id) }}" class="btn">Detail</a>
                                         </td>

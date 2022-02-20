@@ -7,7 +7,9 @@
             <th>Order Date</th>
             <th>Schedule</th>
             <th>Product</th>
+            <th>Jenis Service</th>
             <th>Keterangan</th>
+            <th>Price</th>
             <th>ACTION</th>
         </tr>
     </thead>
@@ -38,7 +40,11 @@
                 App\Models\Schedule::find($booking->schedule_id)->end }}
             </td>
             <td>{{ $booking->product_name }}</td>
+            <td>
+                {{ App\Models\Services::find($booking->services_id)->name}}
+            </td>
             <td>{{ $booking->keterangan }}</td>
+            <td>{{ $booking->price }}</td>
             <td>
                 <div class="dropdown dropdown-inline">
                     <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
@@ -73,7 +79,9 @@
             <th>Order Date</th>
             <th>Schedule</th>
             <th>Product</th>
+            <th>Jenis Service</th>
             <th>Keterangan</th>
+            <th>Price</th>
             <th>ACTION</th>
         </tr>
     </tfoot>

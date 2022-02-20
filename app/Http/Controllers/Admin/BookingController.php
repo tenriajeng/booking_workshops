@@ -54,6 +54,11 @@ class BookingController extends Controller
     {
         $request->validate([
             'user_id' => 'required|numeric',
+            'schedule_id' => 'required|numeric',
+            'services_id' => 'required|numeric',
+            // 'product_name' => 'required',
+            'keterangan' => 'required',
+            'price' => 'required|numeric',
             'status' => 'required|numeric',
             'order_date' => 'required',
         ]);
@@ -75,14 +80,16 @@ class BookingController extends Controller
         $dataRecord['order_date'] = $order_date;
         $dataBook = Booking::where('status', '!=', '3')->where('schedule_id', $dataRecord['schedule_id'])->whereDate('order_date', $order_date)->first();
 
-        // dd($dataBook);
+        //  dd($dataRecord);
         if (is_null($dataBook)) {
             // $book = Booking::create($dataRecord);
             $book = Booking::create([
                 'user_id' => $request->user_id,
                 'schedule_id' => $request->schedule_id,
-                'product_name' => $product_name,
+                'services_id' => $request->services_id,
+                // 'product_name' => $product_name,
                 'keterangan' => $request->keterangan,
+                'price' => $request->price,
                 'order_date' => $request->order_date,
                 'status' => 1,
             ]);
@@ -146,6 +153,7 @@ class BookingController extends Controller
         $request->validate([
             'user_id' => "required|numeric",
             'schedule_id' => 'required|numeric',
+            'services_id' => 'required|numeric',
             'status' => 'required|numeric',
             'order_date' => 'required',
         ]);
