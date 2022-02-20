@@ -39,37 +39,47 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        
+        // dd($input);
         // $input['schedule_id'] = $input['time'];
         $input['schedule_id'] = $input['time'];
         $input['user_id'] = Auth::user()->id;
         $input['status'] = 1;
+        $price = 0;
+
         if (isset($input['product'])) {
             $product_name = [];
             foreach ($input['product'] as $index => $product_id) {
+
                 $product = Product::find($product_id);
+                $price += $product->price;
                 $product_name[$index] = $product->name;
             }
             $product_name = implode(" & ", $product_name);
-        }else{
+        } else {
             $product_name = [];
         }
+
 
         // dd($input);
         // $book = Booking::create($input);
         $book = Booking::create([
             'user_id' => Auth::user()->id,
-            'schedule_id' => $request->schedule_id,
+            'schedule_id' => $input['schedule_id'],
             'services_id' => $request->services_id,
             'product_name' => $product_name,
             'keterangan' => $request->keterangan,
-            'price' => $request->price,
+            'price' => $price,
             'order_date' => $request->order_date,
             'status' => 1,
         ]);
+
         if (isset($input['product'])) {
             foreach ($input['product'] as $product_id) {
                 $product = Product::find($product_id);
+                $product->stock -= 1;
+                $product->save();
+
+
                 $BookingProduct = new BookingProduct;
                 $BookingProduct->product_id = $product->id;
                 $BookingProduct->booking_id = $book->id;
@@ -78,6 +88,8 @@ class BookingController extends Controller
                 $BookingProduct->save();
             }
         }
+
+
 
 
         return redirect(route('home'));

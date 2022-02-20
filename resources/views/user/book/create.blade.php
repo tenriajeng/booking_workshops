@@ -68,8 +68,8 @@
 
                                         <!-- Jenis Service -->
                                         <div class="col-4">
-                                            <label for="example-date-input"
-                                                class="col-form-label text-right">Jenis Service</label>
+                                            <label for="example-date-input" class="col-form-label text-right">Jenis
+                                                Service</label>
                                             <select id="inputState" name="services_id" class="form-control">
                                                 <option> Choose Services </option>
                                                 @foreach (App\Models\Services::all() as $services)
@@ -81,16 +81,18 @@
                                         </div>
 
                                         <div class="col-4">
-                                            <label for="keterangan" class="col-form-label text-right" >Keterangan</label>
-                                            <input class="form-control" type="text" name="keterangan" id="keterangan" placeholder="Keterangan">
+                                            <label for="keterangan" class="col-form-label text-right">Keterangan</label>
+                                            <input class="form-control" type="text" name="keterangan" id="keterangan"
+                                                placeholder="Keterangan">
                                         </div>
-                                        
+
 
                                         <!-- Harga -->
-                                        <div class="col-4">
-                                            <label for="price" class="col-form-label text-right" >Price</label>
-                                            <input class="form-control" type="text" name="price" id="price" placeholder="Price">
-                                        </div>
+                                        {{-- <div class="col-4">
+                                            <label for="price" class="col-form-label text-right">Price</label>
+                                            <input class="form-control" type="text" name="price" id="price"
+                                                placeholder="Price">
+                                        </div> --}}
 
 
                                         <div class="col-4">

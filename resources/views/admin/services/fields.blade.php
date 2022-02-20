@@ -7,29 +7,24 @@
         <input type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Example pliers"
             name="name" id="name" value="{{ $data->name ?? '' }}" />
         @error('name')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
         @enderror
     </div>
 
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-    <label>Price *</label>
-    <input type="number" class="form-control  @error('price') is-invalid @enderror" placeholder="Example 100000"
-        name="price" id="price" value="{{ $data->price ?? '' }}" />
+        <label>Price *</label>
+        <input type="number" class="form-control  @error('price') is-invalid @enderror" placeholder="Example 100000"
+            name="price" id="price" value="{{ $data->price ?? '' }}" />
 
-    @error('price')
+        @error('price')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
-    @enderror
+        @enderror
+    </div>
 </div>
-</div>
-</div>
-    
-
-
-
 
 @push('page_style')
 <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
