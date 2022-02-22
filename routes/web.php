@@ -53,7 +53,7 @@ Route::group(['middleware' => ['role:user', 'auth'], 'prefix' => 'account'], fun
 // Route::get('/push-notificaiton', [WebNotificationController::class, 'index'])->name('push-notificaiton');
 Route::post('/store-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('store.token');
 // Route::post('/send-web-notification', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');
-Route::prefix('admin')->group(function () {
+Route::group(['middleware' => ['role:admin', 'auth'], 'prefix' => 'admin'], function () {
     // Route::get('/', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.home');
     Route::get('/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
 

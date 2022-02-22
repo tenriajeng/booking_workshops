@@ -23,6 +23,11 @@ class Booking extends Model
 
     ];
 
+    public function service()
+    {
+        return $this->belongsTo(Services::class, 'services_id', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

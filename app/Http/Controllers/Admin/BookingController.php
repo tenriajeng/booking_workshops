@@ -59,18 +59,21 @@ class BookingController extends Controller
             'services_id' => 'required|numeric',
             // 'product_name' => 'required',
             'keterangan' => 'required',
-            'price' => 'required|numeric',
+            // 'price' => 'required|numeric',
             'status' => 'required|numeric',
             'order_date' => 'required',
         ]);
 
         $dataRecord = $request->all();
+        // dd($dataRecord);
+        $price = 0;
 
         if (isset($dataRecord['product'])) {
             $product_name = [];
             foreach ($dataRecord['product'] as $index => $product_id) {
                 $product = Product::find($product_id);
                 $product_name[$index] = $product->name;
+                $price += $product->price;
             }
             $product_name = implode(" & ", $product_name);
         } else {
@@ -81,6 +84,9 @@ class BookingController extends Controller
         $dataRecord['order_date'] = $order_date;
         $dataBook = Booking::where('status', '!=', '3')->where('schedule_id', $dataRecord['schedule_id'])->whereDate('order_date', $order_date)->first();
 
+        $service = Services::find($dataRecord['services_id']);
+        $price += $service->price;
+
         //  dd($dataRecord);
         if (is_null($dataBook)) {
             // $book = Booking::create($dataRecord);
@@ -88,15 +94,20 @@ class BookingController extends Controller
                 'user_id' => $request->user_id,
                 'schedule_id' => $request->schedule_id,
                 'services_id' => $request->services_id,
-                // 'product_name' => $product_name,
+                'product_name' => $product_name,
                 'keterangan' => $request->keterangan,
-                'price' => $request->price,
+                'price' => $price,
                 'order_date' => $request->order_date,
                 'status' => 1,
             ]);
+
             if (isset($dataRecord['product'])) {
                 foreach ($dataRecord['product'] as $product_id) {
                     $product = Product::find($product_id);
+                    $product->stock -= 1;
+                    $price += $product->price;
+                    $product->save();
+
                     $BookingProduct = new BookingProduct;
                     $BookingProduct->product_id = $product->id;
                     $BookingProduct->booking_id = $book->id;

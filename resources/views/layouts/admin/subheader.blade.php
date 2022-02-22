@@ -51,7 +51,7 @@
                             <a href="/admin/booking/edit/{{ $y->id }}" class="navi-link">
                                 <span class="navi-text">
                                     <span class="label label-xl label-inline label-light-success">
-                                        {{ $y->user->email }}
+                                        {{ $y->user->email ?? '-' }}
                                     </span>
                                 </span>
                             </a>

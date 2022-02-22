@@ -50,6 +50,7 @@ User
                                         <tr>
                                             <th>#</th>
                                             <th>User</th>
+                                            <th>Bayar</th>
                                             <th>Status</th>
                                             <th>Order Date</th>
                                         </tr>
@@ -63,6 +64,7 @@ User
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $booking->user->email }}</td>
+                                            <td>{{ $booking->price }}</td>
                                             <td>
                                                 <span class="label label-info label-inline mr-2">Finished</span>
                                             </td>
@@ -75,6 +77,7 @@ User
                                         <tr>
                                             <th>#</th>
                                             <th>User</th>
+                                            <th>Bayar</th>
                                             <th>Status</th>
                                             <th>Order Date</th>
                                         </tr>

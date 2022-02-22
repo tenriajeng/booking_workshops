@@ -2,6 +2,11 @@
 
 @push('page_style')
 @include('layouts.admin.css')
+<style>
+    .deleteButton {
+        cursor: pointer;
+    }
+</style>
 <link href="{{ asset('plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 

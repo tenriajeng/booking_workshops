@@ -44,7 +44,8 @@
                 {{ App\Models\Services::find($booking->services_id)->name}}
             </td>
             <td>{{ $booking->keterangan }}</td>
-            <td>{{ $booking->price }}</td>
+            {{-- create curency format --}}
+            <td>Rp.{{ number_format($booking->price, 0, ',', '.') }}</td>
             <td>
                 <div class="dropdown dropdown-inline">
                     <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
@@ -59,8 +60,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/booking/delete/{{ $booking->id }}" class="nav-link deleteButton"
-                                    onclick="deleteFunction({{ $booking->id }})">
+                                <form action="{{ route('admin.booking.delete', $booking->id) }}"
+                                    id="formDelete[{{  $booking->id }}]" method="get">
+                                </form>
+
+                                <a class="nav-link deleteButton" onclick="deleteFunction({{ $booking->id }})">
                                     <i class="nav-icon la la-trash"></i>
                                     <span class="nav-text">Delete</span>
                                 </a>

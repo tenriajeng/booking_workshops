@@ -41,7 +41,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:20|unique:categories',
+            'name' => 'required|max:50|unique:categories',
             'category_id' => 'required|numeric',
             'price' => 'required|numeric',
             // 'duration' => 'required|numeric',
@@ -101,13 +101,13 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         // dd($request->all());
         $request->validate([
-            'name' => 'required|max:20|unique:categories',
+            'name' => 'required|max:50|unique:categories',
             'category_id' => 'required|numeric',
             'price' => 'required|numeric',
             // 'duration' => 'required|numeric',
             'description' => 'required',
             'status' => 'required|numeric',
-            'stock' => 'required|numeric',
+            // 'stock' => 'required|numeric',
         ]);
         $dataRecord = $request->all();
 

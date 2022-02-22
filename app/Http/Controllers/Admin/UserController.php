@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class UserController extends Controller
 {
     /**
@@ -16,6 +18,13 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
+
+        // remove user has role admin or pimpinan
+        $data = $data->filter(function ($user) {
+            return $user->hasRole('admin') == false && $user->hasRole('pimpinan') == false;
+        });
+
+        // dd($data);
 
         return view('admin.user.index')->with('data', $data);
     }
@@ -39,14 +48,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        if($data['role'] == 2){
+        if ($data['role'] == 2) {
             $user->assignRole('user');
         }
 
@@ -87,7 +96,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = User::find($id);
-        
+
         $data->update([
             'name' => $request['name'],
             'email' => $request['email'],

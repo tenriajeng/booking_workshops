@@ -79,7 +79,7 @@ User
                                                 {{ $sold }}
 
                                             </td>
-                                            <td>{{ $product->description }}</td>
+                                            <td>{!! $product->description !!}</td>
                                             <td>{{ $product->status }}</td>
                                         </tr>
                                         @endforeach
