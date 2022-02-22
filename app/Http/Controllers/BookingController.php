@@ -46,6 +46,7 @@ class BookingController extends Controller
         $input['user_id'] = Auth::user()->id;
         $input['status'] = 1;
         $price = 0;
+        $product_name = "";
 
         if (isset($input['product'])) {
             $product_name = [];
@@ -57,12 +58,15 @@ class BookingController extends Controller
             }
             $product_name = implode(" & ", $product_name);
         } else {
-            $product_name = [];
+            $product_name = "";
         }
         // dd($input);
         $service = Services::find($input['services_id']);
         $price += $service->price;
 
+        // add tax 10 persen
+        $ppn = $price * 0.1;
+        $total = $price + $ppn;
         // dd($input);
         // $book = Booking::create($input);
         $book = Booking::create([
@@ -71,7 +75,7 @@ class BookingController extends Controller
             'services_id' => $request->services_id,
             'product_name' => $product_name,
             'keterangan' => $request->keterangan,
-            'price' => $price,
+            'price' => $total,
             'order_date' => $request->order_date,
             'status' => 1,
         ]);

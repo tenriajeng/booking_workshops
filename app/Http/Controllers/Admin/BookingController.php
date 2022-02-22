@@ -67,6 +67,7 @@ class BookingController extends Controller
         $dataRecord = $request->all();
         // dd($dataRecord);
         $price = 0;
+        $product_name = "";
 
         if (isset($dataRecord['product'])) {
             $product_name = [];
@@ -77,7 +78,7 @@ class BookingController extends Controller
             }
             $product_name = implode(" & ", $product_name);
         } else {
-            $product_name = [];
+            $product_name = "";
         }
 
         $order_date = date_create($dataRecord['order_date']);
@@ -86,6 +87,9 @@ class BookingController extends Controller
 
         $service = Services::find($dataRecord['services_id']);
         $price += $service->price;
+
+        $ppn = $price * 0.1;
+        $total = $price + $ppn;
 
         //  dd($dataRecord);
         if (is_null($dataBook)) {
@@ -96,7 +100,7 @@ class BookingController extends Controller
                 'services_id' => $request->services_id,
                 'product_name' => $product_name,
                 'keterangan' => $request->keterangan,
-                'price' => $price,
+                'price' => $total,
                 'order_date' => $request->order_date,
                 'status' => 1,
             ]);

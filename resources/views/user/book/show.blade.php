@@ -33,28 +33,41 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $key => $item)
-
                                         <tr>
-
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->booking_id }}</td>
                                             <td>{{ $item->product_name }}</td>
-                                            <td>{{ $item->price }}</td>
+                                            <td> @currency($item->price)</td>
                                             <td>{{ $item->created_at }}</td>
                                         </tr>
                                         @endforeach
+                                        @if ($data->count() == 0)
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                Tidak Ada produk
+                                            </td>
+                                        </tr>
+                                        @endif
                                         <tr>
                                             <td colspan="3" class="text-right">
-                                                service
+                                                {{-- format curency --}}
+
+                                                service {{ App\Models\Booking::find($id)->service->name }}
                                             </td>
                                             <td colspan="2" class="text-left">
-                                                {{ App\Models\Booking::find($item->booking_id)->service->price }}
+                                                @currency(App\Models\Booking::find($id)->service->price)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-right">PPN 10%</td>
+                                            <td colspan="2" class="text-left">
+                                                @currency($ppn)
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="text-right">Price</td>
                                             <td colspan="2" class="text-left">
-                                                {{ App\Models\Booking::find($item->booking_id)->price }}
+                                                @currency(App\Models\Booking::find($id)->price)
                                             </td>
                                         </tr>
                                     </tbody>
