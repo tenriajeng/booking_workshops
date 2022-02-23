@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,16 @@ Route::group(['middleware' => ['role:pimpinan', 'auth'], 'prefix' => 'pimpinan']
     Route::get('/Lproduct', [App\Http\Controllers\Pimpinan\LDataProductController::class, 'index'])->name('LDproduct');
     Route::get('/Lpengguna', [App\Http\Controllers\Pimpinan\LDataPenggunaController::class, 'index'])->name('LDpengguna');
     Route::get('/Ltransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'index'])->name('LDtransaksi');
+
+    Route::get('/laporan_pengguna', [App\Http\Controllers\Pimpinan\LDataPenggunaController::class, 'laporan'])->name('laporan.pengguna');
+    
+    Route::get('/laporan_transaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'laporan'])->name('laporan.transaksi');
+    Route::get('/laporantransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'cek']);
+    Route::post('/laporantransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'cek']);
+
+    Route::get('/laporan_product', [App\Http\Controllers\Pimpinan\LDataProductController::class, 'laporan'])->name('laporan.product');
+    Route::get('/laporanproduct', [App\Http\Controllers\Pimpinan\LDataProductController::class, 'cek']);
+    Route::post('/laporanproduct', [App\Http\Controllers\Pimpinan\LDataProductController::class, 'cek']);
 });
 
 

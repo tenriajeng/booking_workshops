@@ -16,7 +16,6 @@
 @endpush
 
 @section('content')
-
     @include('layouts.admin.mobile_header')
 
     <div class="d-flex flex-column flex-root">
@@ -41,7 +40,10 @@
                                     <div class="card-title">
                                         <h3 class="card-label">Laporan Data Pengguna</h3>
                                     </div>
-
+                                    <div class="card-title margin-left">
+                                        <a href="{{ route('laporan.pengguna') }}" target="_blank"
+                                            class="btn btn-outline-danger">Export PDF</a>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
@@ -105,5 +107,4 @@
             <!--end::Wrapper-->
         </div>
     </div>
-
 @endsection
