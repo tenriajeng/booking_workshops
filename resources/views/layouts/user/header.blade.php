@@ -1,4 +1,4 @@
-<header id="header" data-transparent="true" data-fullwidth="false" class="light shadow">
+<header id="header" data-transparent="true" data-fullwidth="true" class="dark submenu-light">
     <div class="header-inner">
         <div class="container">
             <!--Logo-->
@@ -79,9 +79,12 @@
                                     </a>
                                 </li>
                             @else
+                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="index.html">History</a></li>
+                                <li><a href="index.html">Book</a></li>
+                                <li><a href="index.html">Product</a></li>
                                 <li>
-                                    <a href="" class=" btn btn-rounded btn-danger text-center"
-                                        style="color: white; font-weight: 600;font-size: 14px;"
+                                    <a href="" class="text-center " style="color: black; font-weight: 600;"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Log out
                                     </a>
