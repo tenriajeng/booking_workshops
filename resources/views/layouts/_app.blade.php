@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="icon" type="image/png" href="{{ asset('BW.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('asset/logo.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Document title -->
     <title> @stack('tap_title') {{ config('app.name', 'Marannu Mobil') }}</title>
@@ -22,13 +22,13 @@
     class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 
     @include('sweetalert::alert')
+    <div class="body-inner">
+        @include('layouts.user.header')
 
-    @include('layouts.user.header')
+        @yield('content')
 
-    @yield('content')
-
-    @include('layouts.user.footer')
-
+        @include('layouts.user.footer')
+    </div>
     @stack('page_script')
 
     @include('layouts.user.js')

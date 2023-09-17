@@ -1,4 +1,4 @@
-<footer id="footer" style="position: fixed;bottom: 0;width: 100%;">
+<footer id="footer">
     <div class="copyright-content">
         <div class="container">
             <div class="copyright-text text-center">&copy; 2021
