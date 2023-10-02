@@ -1,137 +1,106 @@
 @extends('layouts._app')
 
 @push('page_style')
-@include('layouts.user.css')
-<link href='{{ asset("user-template/plugins/datatables/datatables.min.css") }}' rel='stylesheet' />
-
+    @include('layouts.user.css')
+    <link href='{{ asset('user-template/plugins/datatables/datatables.min.css') }}' rel='stylesheet' />
 @endpush
 
 @section('content')
-<!-- Page Content -->
-<section id="page-content">
-    <div class="container">
-        <div class="row">
-            <div class="content col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Chose Date, Time And Parts if you need</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('book.store') }}">
-                            <!-- @csrf
-                            <div class="form-group row">
-                                <div class="col-4">
-                                    <label for="example-date-input" class="col-form-label text-right">Date</label>
-                                    <input class="form-control" onchange="dateChange()" type="date" name="order_date"
-                                        value="2021-10-11" id="example-date-input">
-                                </div>
-                                <div class="col-4" id="selectTime">
-                                    <label for="example-date-input" class="col-form-label text-right">Time</label>
-                                    <select id="inputState" name="schedule_id" class="form-control">
-                                        <option> Choose Time </option>
-                                        @foreach ($schedules as $schedule)
-                                        <option value="{{ $schedule->id }}">
-                                            {{ $schedule->start }} - {{ $schedule->end }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <label for="keterangan" class="col-form-label text-right">Keterangan</label>
-                                    <input class="form-control" type="text" name="keterangan" id="keterangan">
-                                </div>
-                                <div class="col-4">
-                                    <br>
-                                    <input type="submit" value="Book" class="btn btn-primary" style="margin-top: 13px">
-                                </div>
-                            </div> -->
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('book.store') }}">
-                                    @csrf
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <label for="example-date-input"
-                                                class="col-form-label text-right">Date</label>
-                                            <input class="form-control" onchange="dateChange()" type="date"
-                                                name="order_date" value="2021-10-11" id="example-date-input">
-                                        </div>
-                                        <div class="col-4" id="selectTime">
-                                            <label for="example-date-input"
-                                                class="col-form-label text-right">Time</label>
-                                            <select id="inputState" name="schedule_id" class="form-control">
-                                                <option> Choose Time </option>
-                                                @foreach (App\Models\Schedule::all() as $schedule)
-                                                <option value="{{ $schedule->id }}">
-                                                    {{ $schedule->start }} - {{ $schedule->end }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+    <!-- Page Content -->
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="content col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Chose Date, Time And Parts if you need</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('book.store') }}">
 
-                                        <!-- Jenis Service -->
-                                        <div class="col-4">
-                                            <label for="example-date-input" class="col-form-label text-right">Jenis
-                                                Service</label>
-                                            <select id="inputState" name="services_id" class="form-control">
-                                                <option> Choose Services </option>
-                                                @foreach (App\Models\Services::all() as $services)
-                                                <option value="{{ $services->id }}">
-                                                    {{ $services->name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <div class="card-body">
+                                    <form method="POST" action="{{ route('book.store') }}">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-4">
+                                                <label for="example-date-input"
+                                                    class="col-form-label text-right">Date</label>
+                                                <input class="form-control" onchange="dateChange()" type="date"
+                                                    name="order_date" value="2021-10-11" id="example-date-input">
+                                            </div>
+                                            <div class="col-4" id="selectTime">
+                                                <label for="example-date-input"
+                                                    class="col-form-label text-right">Time</label>
+                                                <select id="inputState" name="schedule_id" class="form-control">
+                                                    <option> Choose Time </option>
+                                                    @foreach (App\Models\Schedule::all() as $schedule)
+                                                        <option value="{{ $schedule->id }}">
+                                                            {{ $schedule->start }} - {{ $schedule->end }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
-                                        <div class="col-4">
-                                            <label for="keterangan" class="col-form-label text-right">Keterangan</label>
-                                            <input class="form-control" type="text" name="keterangan" id="keterangan"
-                                                placeholder="Keterangan">
-                                        </div>
+                                            <!-- Jenis Service -->
+                                            <div class="col-4">
+                                                <label for="example-date-input" class="col-form-label text-right">Jenis
+                                                    Service</label>
+                                                <select id="inputState" name="services_id" class="form-control">
+                                                    <option> Choose Services </option>
+                                                    @foreach (App\Models\Services::all() as $services)
+                                                        <option value="{{ $services->id }}">
+                                                            {{ $services->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <label for="keterangan" class="col-form-label text-right">Keterangan</label>
+                                                <input class="form-control" type="text" name="keterangan" id="keterangan"
+                                                    placeholder="Keterangan">
+                                            </div>
 
 
-                                        <!-- Harga -->
-                                        {{-- <div class="col-4">
+                                            <!-- Harga -->
+                                            {{-- <div class="col-4">
                                             <label for="price" class="col-form-label text-right">Price</label>
                                             <input class="form-control" type="text" name="price" id="price"
                                                 placeholder="Price">
                                         </div> --}}
 
 
-                                        <div class="col-4">
-                                            <br>
-                                            <input type="submit" value="Book" class="btn btn-primary"
-                                                style="margin-top: 13px">
+                                            <div class="col-4">
+                                                <br>
+                                                <input type="submit" value="Book" class="btn btn-primary"
+                                                    style="margin-top: 13px">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div id="item">
-                                    </div>
-                                </form>
-                                @include('user.book.product')
-                            </div>
+                                        <div id="item">
+                                        </div>
+                                    </form>
+                                    @include('user.book.product')
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-</section>
-<!-- end: Page Content -->
-<!-- Footer -->
-@include('layouts.user.footer')
-<!-- end: Footer -->
-</div>
-
+    </section>
+    <!-- end: Page Content -->
+    </div>
 @endsection
 
 @push('page_script')
-@include('layouts.user.js')
-<script src="{{ asset('user-template/plugins/popper/popper.min.js') }}"></script>
-<script src='{{ asset("user-template/plugins/datatables/datatables.min.js") }}'></script>
-<script>
-    $(document).ready(function () {
-        var table = $('#datatable').DataTable(); 
-    });
-</script>
-<script>
-    let i = 0;
+    @include('layouts.user.js')
+    <script src="{{ asset('user-template/plugins/popper/popper.min.js') }}"></script>
+    <script src='{{ asset('user-template/plugins/datatables/datatables.min.js') }}'></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#datatable').DataTable();
+        });
+    </script>
+    <script>
+        let i = 0;
 
         function add(data, id) {
             console.log(data);
@@ -199,5 +168,5 @@
                 }
             );
         }
-</script>
+    </script>
 @endpush

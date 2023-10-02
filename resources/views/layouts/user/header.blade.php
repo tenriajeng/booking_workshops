@@ -1,4 +1,5 @@
-<header id="header" data-transparent="true" data-fullwidth="true" class="dark submenu-light">
+<header id="header" data-transparent="{{ request()->url() == url('/') ? 'true' : '' }}" data-fullwidth="true"
+    class="dark submenu-light">
     <div class="header-inner">
         <div class="container">
             <!--Logo-->
@@ -37,7 +38,7 @@
                                 <li><a href="{{ route('book') }}">Book</a></li>
                                 <li><a href="{{ route('guestproduct') }}">Product</a></li>
                                 <li>
-                                    <a href="" class="text-center " style="color: black; font-weight: 600;"
+                                    <a href="" class="text-center " style="  font-weight: 600;"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Log out
                                     </a>

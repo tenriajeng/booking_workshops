@@ -7,58 +7,31 @@
 @section('content')
     @include('sweetalert::alert')
 
-    <!-- Body Inner -->
-    <div class="body-inner">
-        <!-- Header -->
-        @include('layouts.user.header')
-        <!--end: Inspiro Slider -->
-        <!-- Page Content -->
-        <section id="page-content">
-            <div class="container">
-                <div class="row">
-                    <div class="content col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3>Product List</h3>
-                                <div style="overflow-x:auto;">
-
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Image</th>
-                                                <th>Product</th>
-                                                <th>Category</th>
-                                                <th>Stock</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $key => $product)
-                                                <tr>
-                                                    <th scope="row">{{ $key + 1 }}</th>
-                                                    <td> <img src="{{ $product->image }}" height="70"></td>
-                                                    <td>{{ $product->name }}</td>
-                                                    <td>{{ $product->category->name }}</td>
-                                                    <td>{{ $product->stock }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+    <!-- Page Content -->
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                @foreach ($data as $key => $product)
+                    <div class="col-4">
+                        <div class="card" style="border-radius: 14px">
+                            <div class="card-body" style="display: flex;flex-direction: column">
+                                <img src="{{ $product->image }}" width="100%"
+                                    style="border: 2px solid #000;border-radius: 14px; margin-bottom: 10px">
+                                <span
+                                    style="width: 40%; font-size: 12px; padding: 0px 6px; background-color: black; color: white; border-radius: 5px;">
+                                    {{ $product->category->name }}
+                                </span>
+                                <span style="font-weight: 600">
+                                    {{ $product->name }}
+                                </span>
+                                <span style="font-weight: 600">
+                                    Stok {{ $product->stock }}
+                                </span>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-        </section>
-        <!-- end: Page Content -->
-        <!-- Footer -->
-        @include('layouts.user.footer')
-        <!-- end: Footer -->
-    </div>
-
+        </div>
+    </section>
 @endsection
-
-@push('page_script')
-    @include('layouts.user.js')
-@endpush
