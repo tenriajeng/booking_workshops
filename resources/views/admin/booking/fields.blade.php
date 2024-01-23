@@ -214,7 +214,7 @@
     <script src="{{ asset('js/pages/custom/user/edit-user.js') }}"></script>
     <script src="{{ asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
     <script>
-        let i = 0;
+        let i = "{{ count($booking_products) }}";
 
         function add(data, id) {
             console.log(data);

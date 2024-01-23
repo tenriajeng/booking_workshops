@@ -13,10 +13,7 @@ use SebastianBergmann\Type\ObjectType;
 
 class BookingController extends Controller
 {
-    public function __construct()
-    {
-        $this->user_id = null;
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -178,7 +175,6 @@ class BookingController extends Controller
             'order_date' => 'required',
         ]);
         $dataRecord = $request->all();
-
         $order_date = date_create($dataRecord['order_date']);
         $dataRecord['order_date'] = date('Y-m-d H:i:s', strtotime($dataRecord['order_date']));
 
