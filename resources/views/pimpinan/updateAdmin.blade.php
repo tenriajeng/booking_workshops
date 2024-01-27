@@ -1,4 +1,4 @@
-@extends('layouts._app')
+@extends('layouts.p_app')
 
 @push('subheader')
     @push('title_page')
@@ -17,7 +17,6 @@
 @endpush
 
 @section('content')
-
     @include('layouts.admin.mobile_header')
 
     <div class="d-flex flex-column flex-root">
@@ -71,7 +70,6 @@
             <!--end::Wrapper-->
         </div>
     </div>
-
 @endsection
 
 @push('page_style')

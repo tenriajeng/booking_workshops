@@ -16,7 +16,6 @@
 @endpush
 
 @section('content')
-
     <div class="d-flex flex-column flex-root">
         <div class="d-flex flex-row flex-column-fluid page">
 
@@ -24,8 +23,6 @@
 
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-
-                <!-- @include('layouts.admin.header') -->
 
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
@@ -43,8 +40,7 @@
                                     </div>
                                     <div class="card-toolbar">
                                         <!--begin::Button-->
-                                        <a href="{{ route('pimpinan.create') }}"
-                                            class="btn btn-primary font-weight-bolder">
+                                        <a href="{{ route('pimpinan.create') }}" class="btn btn-primary font-weight-bolder">
                                             <i class="la la-plus"></i>
                                             New Record
                                         </a>
@@ -53,7 +49,7 @@
                                 </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
-                                   @include('pimpinan.table')
+                                    @include('pimpinan.table')
                                     <!--end: Datatable-->
                                 </div>
                             </div>
@@ -67,7 +63,7 @@
 
             </div>
 
-           
+
             <!--end::Wrapper-->
         </div>
     </div>

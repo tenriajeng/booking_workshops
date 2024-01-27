@@ -1,4 +1,4 @@
-@extends('layouts._app')
+@extends('layouts.p_app')
 
 @push('page_style')
     @include('layouts.admin.css')

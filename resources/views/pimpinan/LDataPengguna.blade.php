@@ -1,4 +1,4 @@
-@extends('layouts._app')
+@extends('layouts.p_app')
 
 @push('page_style')
     @include('layouts.admin.css')
@@ -21,7 +21,7 @@
     <div class="d-flex flex-column flex-root">
         <div class="d-flex flex-row flex-column-fluid page">
 
-            @include('pimpinan/layout/sidebar')
+            @include('pimpinan.layout.sidebar')
 
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
