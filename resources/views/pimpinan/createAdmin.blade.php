@@ -1,4 +1,4 @@
-@extends('layouts._app')
+@extends('layouts.p_app')
 
 @push('subheader')
     @push('title_page')
@@ -44,7 +44,7 @@
                                 <form action="{{ route('pimpinan.store') }}" method="post" enctype="multipart/form-data"
                                     class="form" id="kt_form">
                                     <div class="card-body">
-                                        @include('admin.user.fields')
+                                        @include('pimpinan.fields')
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                @include('layouts.admin.footer')
+                <!-- @include('layouts.admin.footer') -->
 
             </div>
 

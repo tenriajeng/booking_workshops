@@ -40,8 +40,13 @@
                         ' - ' .
                         App\Models\Schedule::find($booking->schedule_id)->end }}
                 </td>
-                <td>{{ $booking->product_name }}</td>
                 <td>
+                    @foreach ($booking->products as $product)
+                        {{ $product->product_name }}
+                        <br>
+                    @endforeach
+                </td>
+                    <td>
                     {{ App\Models\Services::find($booking->services_id)->name }}
                 </td>
                 <td>{{ $booking->keterangan }}</td>

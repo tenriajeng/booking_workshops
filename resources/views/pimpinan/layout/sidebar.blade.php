@@ -3,7 +3,7 @@
     <!--begin::Brand-->
     <div class="brand flex-column-auto bg-light-danger" id="kt_brand">
         <!--begin::Logo-->
-        <a href="{{ route('home') }}" class="brand-logo">
+        <a href="{{ route('pimpinan.home') }}" class="brand-logo">
             <span class="svg-icon svg-icon-primary svg-icon-2x">
                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\Settings-2.svg--><svg
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -54,7 +54,7 @@
             <ul class="menu-nav  ">
                 <li class="menu-item menu-item {{ Request::is('admin/home*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
-                    <a href="{{ route('home') }}" class="menu-link">
+                    <a href="{{ route('pimpinan.home') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
