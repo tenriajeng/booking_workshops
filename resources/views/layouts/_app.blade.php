@@ -28,7 +28,9 @@
         @yield('content')
 
         @include('layouts.user.footer')
+         
     </div>
+    @include('layouts.firebase_script')
     @stack('page_script')
 
     @include('layouts.user.js')

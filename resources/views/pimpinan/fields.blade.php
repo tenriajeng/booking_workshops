@@ -47,7 +47,7 @@
     <div class="col-lg-9 col-md-9 col-sm-9 col-9">
         <div class="input-group">
             <select class="form-control select2 col-9" id="kt_select2_102" name="role">
-                <option>
+                <option></option>
                 @foreach (App\Models\Role::all() as $item)
                     @if ( $item->name == 'admin' ||$item->name == 'pimpinan' )
                         @php
@@ -64,7 +64,7 @@
                         </option>
                     @endif
                 @endforeach
-                </option>
+                
             </select>
             <span class="form-text text-muted"></span>
         </div>

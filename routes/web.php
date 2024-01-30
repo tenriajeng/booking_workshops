@@ -20,6 +20,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/schedule/{date}', [App\Http\Controllers\HomeController::class, 'schedule'])->name('schedule');
 Route::get('/guestproduct', [App\Http\Controllers\ProductController::class, 'index'])->name('guestproduct');
 
+// notif test
+    Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
+    Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification');
+
 
 
 Route::group(['middleware' => ['role:pimpinan', 'auth'], 'prefix' => 'pimpinan'], function () {
