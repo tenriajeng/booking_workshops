@@ -39,18 +39,18 @@ class PimpinanController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        if($data['role'] == 2){
+        if ($data['role'] == 2) {
             $user->assignRole('user');
-        }elseif($data['role'] == 1){
+        } elseif ($data['role'] == 1) {
             $user->assignRole('admin');
-        }elseif($data['role'] == 3){
+        } elseif ($data['role'] == 3) {
             $user->assignRole('Pimpinan');
         }
 
@@ -93,7 +93,7 @@ class PimpinanController extends Controller
         $data = User::find($id);
         // $data = $request->all();
         // dd($data);
-        
+
         $data->update([
             'name' => $request['name'],
             'email' => $request['email'],

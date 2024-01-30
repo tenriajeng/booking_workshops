@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Product;
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         return view('user.home');
         // return view('vendor.laravelpwa.offline');
     }
@@ -98,7 +99,7 @@ class HomeController extends Controller
             "notification" => [
                 "title" => $request->title,
                 "body" => $request->body,
-                
+
             ]
         ];
         $dataString = json_encode($data);

@@ -1,3 +1,4 @@
+
 <table class="table table-separate table-head-custom collapsed" id="kt_datatable">
     <thead>
         <tr>

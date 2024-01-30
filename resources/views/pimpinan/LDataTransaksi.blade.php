@@ -56,8 +56,12 @@
                             </div>
                             <br>
                             <!--begin::Content-->
-                            
-                            @if ($jumlah > 0)
+
+                            {{-- @if ($jumlah > 0) --}}
+                            @if (session('message'))
+                                <p>{{ session('message') }}</p>
+                            @else
+                                {{-- Tampilkan data atau informasi lainnya --}}
                                 <div class="card card-custom">
                                     <div class="card-header">
                                         <div class="card-title">
@@ -113,6 +117,10 @@
                                     </div>
                                 </div>
                             @endif
+
+
+
+                            {{-- @endif --}}
                             <!--end::Content-->
 
                         </div>

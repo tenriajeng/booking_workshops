@@ -32,7 +32,7 @@
         </div>
     </div>
 </div>
-<div class="form-group row">
+<!-- <div class="form-group row">
     <label class="col-form-label col-lg-3 col-sm-3 col-3 text-right">Surname *</label>
     <div class="col-lg-9 col-md-9 col-sm-9 col-9">
         <div class="input-group">
@@ -40,7 +40,7 @@
                 placeholder="Surname" name="name_on_certificate" />
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="form-group row">
     <label class="col-form-label col-lg-3 col-sm-3 col-3 text-right">Role *</label>
@@ -49,7 +49,7 @@
             <select class="form-control select2 col-9" id="kt_select2_102" name="role">
                 <option></option>
                 @foreach (App\Models\Role::all() as $item)
-                    @if ( $item->name == 'admin' ||$item->name == 'pimpinan' )
+                    @if ($item->name == 'admin' || $item->name == 'pimpinan')
                         @php
                             if (isset($data)) {
                                 foreach (App\Models\User::find($data->id)->getRoleNames() as $role) {
@@ -64,7 +64,7 @@
                         </option>
                     @endif
                 @endforeach
-                
+
             </select>
             <span class="form-text text-muted"></span>
         </div>
