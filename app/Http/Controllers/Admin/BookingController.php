@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\BookingProduct;
 use App\Models\Product;
 use App\Models\Services;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\ObjectType;
@@ -174,7 +175,9 @@ class BookingController extends Controller
             'status' => 'required|numeric',
             'order_date' => 'required',
         ]);
+
         $dataRecord = $request->all();
+
         $order_date = date_create($dataRecord['order_date']);
         $dataRecord['order_date'] = date('Y-m-d H:i:s', strtotime($dataRecord['order_date']));
 
@@ -205,7 +208,67 @@ class BookingController extends Controller
         $dataRecord['price'] = $price;
         $booking->update($dataRecord);
 
+        $statusLabels = [
+            1 => 'Book',
+            2 => 'Process',
+            3 => 'Finished',
+            4 => 'Cancel',
+            5 => 'di Setujui',
+        ];
+
+        $statusMessages = [
+            1 => 'Your service booking is confirmed. We look forward to serving you.',
+            2 => 'Your service is in progress. We\'ll update you shortly.',
+            3 => 'Your service is finished. Thank you for choosing our services.',
+            4 => 'Unfortunately, your service has been canceled. If you have any concerns, please contact us.',
+            5 => 'Your service request has been approved. We\'ll proceed accordingly.',
+        ];
+
+        $status = $statusLabels[$dataRecord['status']] ?? '';
+        $message = $statusMessages[$dataRecord['status']] ?? '';
+
+        $this->sendNotification($dataRecord['user_id'], $status, $message);
+
         return redirect(route('booking.index'));
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function sendNotification($user_id, $title, $message)
+    {
+        $firebaseToken = User::where('id', $user_id)->get()->pluck('device_token');
+
+        $SERVER_API_KEY = 'AAAApathYOU:APA91bHZzBQyj8EuFATUTPJqvXnrZtUKEaEanx-KwfBqTpdMf9jCeb2Ji9Q2-DlLtdoK930iU-93xApPIgWxv57PKImUWaUaFJLIyOuQSo7BRNEBnwyDuCOR0ofCYlY7Ph-yFL3EuyVf';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => $title,
+                "body" => $message,
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
+
+        return ($response);
     }
 
     /**
