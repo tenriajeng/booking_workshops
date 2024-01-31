@@ -56,10 +56,7 @@
                             </div>
                             <br>
                             <!--begin::Content-->
-                            @if (session('message'))
-                                <p>{{ session('message') }}</p>
-                            @else
-                                {{-- Tampilkan data atau informasi lainnya --}}
+                            @if ($jumlah > 0)
                                 <div class="card card-custom">
                                     <div class="card-header">
                                         <div class="card-title">
@@ -103,7 +100,7 @@
                                                                     ->pluck('id')
                                                                     ->toArray();
                                                                 $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
-                                                                    ->where('productId', $product->id)
+                                                                    // ->where('productId', $product->id)
                                                                     ->get()
                                                                     ->count();
                                                             @endphp

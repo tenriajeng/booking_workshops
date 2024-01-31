@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pimpinan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
@@ -16,22 +17,24 @@ class LDataTransaksiController extends Controller
         return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
 
         // $data = DB::table('bookings')
-        //     ->join('categories', 'categories.id', '=', 'products.category_id')
+        //     ->join('users', 'users.id', '=', 'bookings.user_id')
+        //     ->join('services', 'services.id', '=', 'bookings.services_id')
+        //     ->join('booking_products', 'booking_products.product_name', '=', 'bookings.product_name')
         //     ->select(
-        //         'categories.name as categoriesName',
-        //         'products.name as productsName',
-        //         'products.price',
-        //         'products.id',
-        //         'products.description',
-        //         'products.image',
-        //         'products.status',
-        //         'products.stock',
+        //         'users.id as userId',
+        //         'users.email',
+        //         // 'products.name as productsName',  // Assuming 'products' table has a 'name' column
+        //         'services.name as serviceName',
+        //         'bookings.id',
+        //         'bookings.order_date',
+        //         'bookings.price',
+        //         'bookings.status',
+        //         'bookings.keterangan'
         //     )
         //     ->get();
-
         // $jumlah = 0;
 
-        // return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
+        // return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
     }
 
     public function cek(Request $request)

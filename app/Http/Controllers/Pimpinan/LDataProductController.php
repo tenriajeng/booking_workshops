@@ -34,6 +34,8 @@ class LDataProductController extends Controller
                 'products.name as productsName',
                 'products.image',
                 'products.price',
+                'products.description',
+                'products.status',
                 'products.stock'
             )
             ->get();
@@ -61,6 +63,8 @@ class LDataProductController extends Controller
                 'products.name as productsName',
                 'products.image',
                 'products.price',
+                'products.description',
+                'products.status',
                 'products.stock'
             )
             ->whereBetween('products.updated_at', [$tglawal, $tglakhir])->get();
