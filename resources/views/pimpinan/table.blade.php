@@ -46,7 +46,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="/pimpinan/delete/{{ $user->id }}" class="nav-link deleteButton"
+                                            <a class="nav-link deleteButton"
                                                 onclick="deleteFunction({{ $user->id }})">
                                                 <i class="nav-icon la la-trash"></i>
                                                 <span class="nav-text">Delete</span>

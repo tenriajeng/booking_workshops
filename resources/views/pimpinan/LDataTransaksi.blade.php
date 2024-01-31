@@ -56,8 +56,12 @@
                             </div>
                             <br>
                             <!--begin::Content-->
-                            
-                            @if ($jumlah > 0)
+
+                            {{-- @if ($jumlah > 0) --}}
+                            @if (session('message'))
+                                <p>{{ session('message') }}</p>
+                            @else
+                                {{-- Tampilkan data atau informasi lainnya --}}
                                 <div class="card card-custom">
                                     <div class="card-header">
                                         <div class="card-title">
@@ -75,6 +79,9 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>User</th>
+                                                    <th>Jenis Service</th>
+                                                    <th>Product</th>
+                                                    <th>Keterangan</th>
                                                     <th>Bayar</th>
                                                     <th>Status</th>
                                                     <th>Order Date</th>
@@ -89,6 +96,9 @@
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $booking->user->email }}</td>
+                                                            <td>{{ $booking->service->name }}</td>
+                                                            <td>{{ $booking->product_name }}</td>
+                                                            <td>{{ $booking->keterangan }}</td>
                                                             <td>{{ $booking->price }}</td>
                                                             <td>
                                                                 <span
@@ -113,6 +123,10 @@
                                     </div>
                                 </div>
                             @endif
+
+
+
+                            {{-- @endif --}}
                             <!--end::Content-->
 
                         </div>

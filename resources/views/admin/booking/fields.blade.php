@@ -86,9 +86,9 @@
 
             {{-- <input type="text" name="order_date"
                 class="form-control datetimepicker-input @error('order_date') is-invalid @enderror"
-                placeholder="Select date & time" data-target="#kt_datepicker_1" value="" /> --}}
-            {{-- {{ $data->order_date }} --}}
-            {{-- <div class="input-group-append" data-target="#kt_datepicker_1" data-toggle="datetimepicker">
+                placeholder="Select date & time" data-target="#kt_datepicker_1" value="" /> 
+            {{ $data->order_date }}
+             <div class="input-group-append" data-target="#kt_datepicker_1" data-toggle="datetimepicker">
                 <span class="input-group-text">
                     <i class="ki ki-calendar"></i>
                 </span>
@@ -214,7 +214,7 @@
     <script src="{{ asset('js/pages/custom/user/edit-user.js') }}"></script>
     <script src="{{ asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
     <script>
-        let i = "{{ count($booking_products) }}";
+        let i = 0;
 
         function add(data, id) {
             console.log(data);

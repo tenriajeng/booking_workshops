@@ -74,7 +74,7 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Image</th>
-                                                    <th>Category</th>
+                                                    {{-- <th>Category</th> --}}
                                                     <th>Name</th>
                                                     <th>Price</th>
                                                     <th>Stock</th>
@@ -88,7 +88,6 @@
                                                     <tr>
                                                         <th scope="row">{{ $key + 1 }}</th>
                                                         <td> <img src="{{ $product->image }}" height="70"></td>
-                                                        <td>{{ $product->categoriesName }}</td>
                                                         <td>{{ $product->productsName }}</td>
                                                         <td>{{ $product->price }}</td>
                                                         <td>{{ $product->stock }}</td>
@@ -101,7 +100,7 @@
                                                                     ->pluck('id')
                                                                     ->toArray();
                                                                 $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
-                                                                    ->where('product_id', $product->id)
+                                                                    // ->where('productId', $product->id)
                                                                     ->get()
                                                                     ->count();
                                                             @endphp
@@ -117,7 +116,7 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Image</th>
-                                                    <th>Category</th>
+                                                    {{-- <th>Category</th> --}}
                                                     <th>Name</th>
                                                     <th>Price</th>
                                                     <th>Stock</th>
@@ -131,6 +130,9 @@
                                     </div>
                                 </div>
                             @endif
+                            {{-- @if ($jumlah > 0) --}}
+
+                            {{-- @endif --}}
                             <!--end::Content-->
                         </div>
                     </div>
