@@ -67,7 +67,9 @@ class LDataProductController extends Controller
                 'products.status',
                 'products.stock'
             )
+            ->where('bookings.status', 3)
             ->whereBetween('products.updated_at', [$tglawal, $tglakhir])->get();
+
         $jumlah = $data->count();
         $request->session()->put('data', $data);
         $request->session()->put('tglawal', $tglawal);

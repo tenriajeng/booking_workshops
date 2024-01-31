@@ -58,7 +58,7 @@ class LDataTransaksiController extends Controller
         $tglawal = date('Y-m-d', strtotime($bln));
         $tglakhir = date('Y-m-t', strtotime($bln));
 
-        $data = Booking::whereBetween('created_at', [$tglawal, $tglakhir])->get();
+        $data = Booking::whereBetween('order_date', [$tglawal, $tglakhir])->get();
         $jumlah = $data->count();
 
         if ($jumlah > 0) {
