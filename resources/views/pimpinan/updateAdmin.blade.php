@@ -43,7 +43,7 @@
                                 <form action="/pimpinan/update/{{ $data->id }}" method="post"
                                     enctype="multipart/form-data" class="form" id="kt_form">
                                     <div class="card-body">
-                                        @include('admin.user.fields')
+                                        @include('pimpinan.fields')
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">

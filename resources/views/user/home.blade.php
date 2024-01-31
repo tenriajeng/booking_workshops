@@ -10,7 +10,14 @@
             <div class="container">
                 <div class="slide-captions text-center text-light">
                     <!-- Captions -->
-                    <h1>Selamat Datang di Car Workshop Booking</h1>
+                    @auth
+                    <h1>Selamat Datang di Car Workshop Booking
+
+                        {{ auth()->user()->name }}
+                    </h1>
+                    <!-- <p>Your roles: {{ auth()->user()->getRoleNames()->implode(', ') }}</p> -->
+                    @endauth
+
                     <p>
                         Selamat datang di Car Workshop Booking, tempat terbaik untuk merawat kendaraan Anda! Kami adalah
                         penyedia layanan workshop mobil yang profesional dan dapat diandalkan

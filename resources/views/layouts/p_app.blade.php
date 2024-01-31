@@ -47,6 +47,7 @@
 
         @yield('content')
 
+        @include('layouts.admin.profile')
     </div>
     @stack('page_script')
 

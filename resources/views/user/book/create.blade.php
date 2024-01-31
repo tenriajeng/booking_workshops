@@ -15,8 +15,8 @@
                         <div class="card-header">
                             <h3>Chose Date, Time And Parts if you need</h3>
                         </div>
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('book.store') }}">
+                        <!-- <div class="card-body">
+                            <form method="POST" action="{{ route('book.store') }}"> -->
 
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('book.store') }}">

@@ -1,13 +1,11 @@
 @extends('layouts._app')
 
 @section('content')
-@include('sweetalert::alert')
+<!-- @include('sweetalert::alert') -->
 
 <!-- Body Inner -->
-<div class="body-inner">
-    <!-- Header -->
-    @include('layouts.user.header')
-    <!--end: Inspiro Slider -->
+<!-- <div class="body-inner"> -->
+   
     <!-- Content -->
     <section id="page-content" class="no-sidebar">
 
@@ -98,14 +96,14 @@
     </section>
     <!-- end: Content -->
     <!-- Footer -->
-    @include('layouts.user.footer')
+    <!-- @include('layouts.user.footer') -->
     <!-- end: Footer -->
-</div>
+<!-- </div> -->
 
 @endsection
 
 @push('page_style')
-@include('layouts.user.css')
+<!-- @include('layouts.user.css') -->
 <style>
     .card:hover {
         cursor: pointer;
