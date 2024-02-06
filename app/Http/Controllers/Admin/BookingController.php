@@ -8,9 +8,12 @@ use App\Models\BookingProduct;
 use App\Models\Product;
 use App\Models\Services;
 use App\Models\User;
+use App\Notifications\WhatsAppNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\ObjectType;
+use Twilio\Rest\Client;
+
 
 class BookingController extends Controller
 {
@@ -229,6 +232,25 @@ class BookingController extends Controller
 
         $this->sendNotification($dataRecord['user_id'], $status, $message);
 
+        $user = User::find($dataRecord['user_id']);
+        $phone = $user->phone ?? '85796196958';
+
+        $sid    = "ACa090cb3389dc25df41b252093508b818";
+        $token  = "08a8be4b447b03e6ac4d5c16d8cf7da9";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $phone, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hello " . $user->name . ', ' . $message . " Details: " . route('book.show', $id)
+                )
+            );
+        // 6282158238890
+        // 6285796196958 
+
+        // dd($message);
         return redirect(route('booking.index'));
     }
 
