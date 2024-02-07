@@ -8,6 +8,7 @@ use App\Models\BookingProduct;
 use App\Models\Product;
 use App\Models\Services;
 use App\Models\User;
+use App\Notifications\TaskStatusUpdated;
 use App\Notifications\WhatsAppNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -232,8 +233,15 @@ class BookingController extends Controller
 
         $this->sendNotification($dataRecord['user_id'], $status, $message);
 
+
+
         $user = User::find($dataRecord['user_id']);
         $phone = $user->phone ?? '85796196958';
+
+        // $user = auth()->user();
+        // dd($user);
+        $user->notify(new TaskStatusUpdated($booking));
+        // $user->email
 
         $sid    = "ACa090cb3389dc25df41b252093508b818";
         $token  = "08a8be4b447b03e6ac4d5c16d8cf7da9";
