@@ -58,21 +58,23 @@
                             <!--begin::Content-->
 
                             {{-- @if ($jumlah > 0) --}}
-                            @if (session('message'))
-                                <p>{{ session('message') }}</p>
-                            @else
-                                {{-- Tampilkan data atau informasi lainnya --}}
-                                <div class="card card-custom">
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            <h3 class="card-label">Laporan Data Transaksi</h3>
-                                        </div>
-                                        <div class="card-title margin-left">
-                                            <a href="{{ route('laporan.transaksi') }}" target="_blank"
-                                                class="btn btn-outline-danger">Export PDF</a>
-                                        </div>
+
+
+                            {{-- Tampilkan data atau informasi lainnya --}}
+                            <div class="card card-custom">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Laporan Data Transaksi</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-title margin-left">
+                                        <a href="{{ route('laporan.transaksi') }}" target="_blank"
+                                            class="btn btn-outline-danger">Export PDF</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @if (session('message'))
+                                        <p>{{ session('message') }}</p>
+                                    @else
                                         <!--begin: Datatable-->
                                         <table class="table table-separate table-head-custom collapsed" id="kt_datatable">
                                             <thead>
@@ -123,9 +125,10 @@
                                             </tfoot>
                                         </table>
                                         <!--end: Datatable-->
-                                    </div>
+                                    @endif
+
                                 </div>
-                            @endif
+                            </div>
 
 
 

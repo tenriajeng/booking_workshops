@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Schedule;
+use App\Models\Services;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +20,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view("admin.dashboard");
+        $users = User::count();
+        $bookings = Booking::count();
+        $categories = Category::count();
+        $products = Product::count();
+        $schedules = Schedule::count();
+        $services = Services::count();
+
+        return view("admin.dashboard", compact(
+            'users',
+            'bookings',
+            'categories',
+            'products',
+            'schedules',
+            'services',
+        ));
     }
 
     /**
