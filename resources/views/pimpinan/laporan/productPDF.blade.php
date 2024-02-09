@@ -13,7 +13,6 @@
         table tr th {
             font-size: 9pt;
         }
-
     </style>
 
     <style type="text/css">
@@ -30,7 +29,6 @@
         .tabel1 tr:nth-child(even) {
             background: #fffda4;
         }
-
     </style>
 
     <center>
@@ -45,7 +43,7 @@
             <tr class="center">
                 <th width="30px">No</th>
                 <th>Gambar</th>
-                <th>Kategori</th>
+
                 <th>Nama</th>
                 <th>Harga</th>
                 <th>Stok</th>
@@ -59,7 +57,6 @@
                 <tr>
                     <td>{{ $no + 1 }}</td>
                     <td> <img src="{{ $product->image }}" height="70"></td>
-                    <td>{{ $product->categoriesName }}</td>
                     <td>{{ $product->productsName }}</td>
                     <td style="text-align: right">Rp.{{ number_format($product->price, 0) }}&nbsp;</td>
                     <td>{{ $product->stock }}</td>
@@ -67,12 +64,9 @@
 
                         @php
                             $sold = 0;
-                            $book_id = App\Models\Booking::where('status', 3)
-                                ->get()
-                                ->pluck('id')
-                                ->toArray();
+                            $book_id = App\Models\Booking::where('status', 3)->get()->pluck('id')->toArray();
                             $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
-                                ->where('product_id', $product->id)
+                                ->where('product_id', $product->productId)
                                 ->get()
                                 ->count();
                         @endphp

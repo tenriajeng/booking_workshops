@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class LDataProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $data = DB::table('products')
         //     ->join('categories', 'categories.id', '=', 'products.category_id')
@@ -40,8 +40,10 @@ class LDataProductController extends Controller
             )
             ->get();
 
+        $request->session()->put('data', $data);
 
-        $jumlah = 0;
+
+        $jumlah = count($data);
 
         return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
     }
@@ -60,6 +62,7 @@ class LDataProductController extends Controller
                 'booking_products.id as bookingProductId',
                 'bookings.id as bookingId',
                 'products.id as productId',
+                // 'products.category as categoriesName',
                 'products.name as productsName',
                 'products.image',
                 'products.price',
@@ -69,11 +72,18 @@ class LDataProductController extends Controller
             )
             ->where('bookings.status', 3)
             ->whereBetween('products.updated_at', [$tglawal, $tglakhir])->get();
-
+        // dd($data);
         $jumlah = $data->count();
         $request->session()->put('data', $data);
         $request->session()->put('tglawal', $tglawal);
         $request->session()->put('tglakhir', $tglakhir);
+        if ($jumlah > 0) {
+            // Data ditemukan, lakukan sesuatu dengan data
+
+        } else {
+            // Tidak ada data ditemukan, berikan pesan kepada pengguna
+            $request->session()->flash('message', 'Tidak ada data ditemukan untuk bulan ini.');
+        }
 
         return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
     }

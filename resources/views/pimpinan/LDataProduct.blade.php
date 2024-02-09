@@ -56,80 +56,77 @@
                             </div>
                             <br>
                             <!--begin::Content-->
-                            @if ($jumlah > 0)
-                                <div class="card card-custom">
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            <h3 class="card-label">Laporan Data Product</h3>
-                                        </div>
-                                        <div class="card-title margin-left">
-                                            <a href="{{ route('laporan.product') }}" target="_blank"
-                                                class="btn btn-outline-danger">Export PDF</a>
-                                        </div>
+                            <div class="card card-custom">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Laporan Data Product</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <!--begin: Datatable-->
-                                        <table class="table table-separate table-head-custom collapsed" id="kt_datatable">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Image</th>
-                                                    {{-- <th>Category</th> --}}
-                                                    <th>Name</th>
-                                                    <th>Price</th>
-                                                    <th>Stock</th>
-                                                    <th>Sold</th>
-                                                    <th>Description</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($data as $key => $product)
-                                                    <tr>
-                                                        <th scope="row">{{ $key + 1 }}</th>
-                                                        <td> <img src="{{ $product->image }}" height="70"></td>
-                                                        <td>{{ $product->productsName }}</td>
-                                                        <td>{{ $product->price }}</td>
-                                                        <td>{{ $product->stock }}</td>
-                                                        <td>
-
-                                                            @php
-                                                                $sold = 0;
-                                                                $book_id = App\Models\Booking::where('status', 3)
-                                                                    ->get()
-                                                                    ->pluck('id')
-                                                                    ->toArray();
-                                                                $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
-                                                                    // ->where('productId', $product->id)
-                                                                    ->get()
-                                                                    ->count();
-                                                            @endphp
-                                                            {{ $sold }}
-
-                                                        </td>
-                                                        <td>{!! $product->description !!}</td>
-                                                        <td>{{ $product->status }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Image</th>
-                                                    {{-- <th>Category</th> --}}
-                                                    <th>Name</th>
-                                                    <th>Price</th>
-                                                    <th>Stock</th>
-                                                    <th>Sold</th>
-                                                    <th>Description</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <!--end: Datatable-->
+                                    <div class="card-title margin-left">
+                                        <a href="{{ route('laporan.product') }}" target="_blank"
+                                            class="btn btn-outline-danger">Export PDF</a>
                                     </div>
                                 </div>
-                            @endif
+                                <div class="card-body">
+                                    <!--begin: Datatable-->
+                                    <table class="table table-separate table-head-custom collapsed" id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Image</th>
+                                                {{-- <th>Category</th> --}}
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Stock</th>
+                                                <th>Sold</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($data as $key => $product)
+                                                <tr>
+                                                    <th scope="row">{{ $key + 1 }}</th>
+                                                    <td> <img src="{{ $product->image }}" height="70"></td>
+                                                    <td>{{ $product->productsName }}</td>
+                                                    <td>{{ $product->price }}</td>
+                                                    <td>{{ $product->stock }}</td>
+                                                    <td>
+
+                                                        @php
+                                                            $sold = 0;
+                                                            $book_id = App\Models\Booking::where('status', 3)->get()->pluck('id')->toArray();
+                                                            $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
+                                                                // ->where('productId', $product->id)
+                                                                ->get()
+                                                                ->count();
+                                                        @endphp
+                                                        {{ $sold }}
+
+                                                    </td>
+                                                    <td>{!! $product->description !!}</td>
+                                                    <td>{{ $product->status }}</td>
+                                                </tr>
+                                            @empty
+                                            @endforelse
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Image</th>
+                                                {{-- <th>Category</th> --}}
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Stock</th>
+                                                <th>Sold</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <!--end: Datatable-->
+                                </div>
+                            </div>
                             {{-- @if ($jumlah > 0) --}}
 
                             {{-- @endif --}}

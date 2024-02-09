@@ -13,7 +13,6 @@
         table tr th {
             font-size: 9pt;
         }
-
     </style>
 
     <style type="text/css">
@@ -30,7 +29,6 @@
         .tabel1 tr:nth-child(even) {
             background: #fffda4;
         }
-
     </style>
 
     <center>
@@ -52,16 +50,18 @@
         </thead>
         <tbody>
             @foreach ($data as $no => $item)
-                @php
-                    $status = $item->status == 3 ? 'Finished' : '';
-                @endphp
-                <tr>
-                    <td>{{ $no + 1 }}</td>
-                    <td>{{ $item->user->name }}</td>
-                    <td style="text-align: right">Rp.{{ number_format($item->price, 0) }}&nbsp;</td>
-                    <td>{{ $status }}</td>
-                    <td>{{ $item->order_date }}</td>
-                </tr>
+                @if ($item->status == 3)
+                    @php
+                        $status = $item->status == 3 ? 'Finished' : '';
+                    @endphp
+                    <tr>
+                        <td>{{ $no + 1 }}</td>
+                        <td>{{ $item->user->name }}</td>
+                        <td style="text-align: right">Rp.{{ number_format($item->price, 0) }}&nbsp;</td>
+                        <td>{{ $status }}</td>
+                        <td>{{ $item->order_date }}</td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
     </table>
