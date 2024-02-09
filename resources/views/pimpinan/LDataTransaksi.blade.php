@@ -95,8 +95,8 @@
                                                     @if ($booking->status == 3)
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $booking->user->email }}</td>
-                                                            <td>{{ $booking->service->name }}</td>
+                                                            <td>{{ $booking->email }}</td>
+                                                            <td>{{ $booking->name }}</td>
                                                             <td>{{ $booking->product_name }}</td>
                                                             <td>{{ $booking->keterangan }}</td>
                                                             <td>{{ $booking->price }}</td>
@@ -113,6 +113,9 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>User</th>
+                                                    <th>Jenis Service</th>
+                                                    <th>Product</th>
+                                                    <th>Keterangan</th>
                                                     <th>Bayar</th>
                                                     <th>Status</th>
                                                     <th>Order Date</th>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pimpinan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -12,35 +13,35 @@ class LDataTransaksiController extends Controller
 {
     public function index()
     {
-        $data = Booking::latest()->get();
-        $jumlah = 0;
-        return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
-
-        // $data = DB::table('bookings')
-        //     ->join('users', 'users.id', '=', 'bookings.user_id')
-        //     ->join('services', 'services.id', '=', 'bookings.services_id')
-        //     ->join('booking_products', 'booking_products.product_name', '=', 'bookings.product_name')
-        //     ->select(
-        //         'users.id as userId',
-        //         'users.email',
-        //         // 'products.name as productsName',  // Assuming 'products' table has a 'name' column
-        //         'services.name as serviceName',
-        //         'bookings.id',
-        //         'bookings.order_date',
-        //         'bookings.price',
-        //         'bookings.status',
-        //         'bookings.keterangan'
-        //     )
-        //     ->get();
+        // $data = Booking::latest()->get();
         // $jumlah = 0;
-
         // return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
+
+        $data = DB::table('bookings')
+            ->join('users', 'users.id', '=', 'bookings.user_id')
+            ->join('services', 'services.id', '=', 'bookings.services_id')
+            ->join('booking_products', 'booking_products.product_name', '=', 'bookings.product_name')
+            ->select(
+                'users.id',
+                'users.email',
+                // 'products.name as productsName',  // Assuming 'products' table has a 'name' column
+                'services.name',
+                'bookings.product_name',
+                'bookings.id',
+                'bookings.order_date',
+                'bookings.price',
+                'bookings.status',
+                'bookings.keterangan'
+            )
+            ->get();
+        $jumlah = 0;
+        // dd($data);
+
+        return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
     }
 
     public function cek(Request $request)
     {
-        // if(is_null($request))
-        // {}
 
         // $datepicker = $request->datepicker;
         // $bln = $datepicker . "-01";
