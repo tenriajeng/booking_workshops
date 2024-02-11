@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y \
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy the composer.json and composer.lock
+# Copy the composer.json and composer.lock files
 COPY composer.json composer.lock ./
 
-# Install application dependencies
-RUN composer install --no-scripts --no-interaction --prefer-dist
+# Install application dependencies (including dev dependencies)
+RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-autoloader --no-progress
 
 # Copy the application files to the container
 COPY . .
@@ -30,6 +30,7 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 RUN php artisan key:generate
 RUN php artisan config:cache
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+# Expose port 9000 (if necessary; you might not need to expose it explicitly)
+# EXPOSE 9000
+
+# CMD ["php-fpm"]
