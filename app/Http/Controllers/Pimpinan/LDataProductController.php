@@ -38,9 +38,8 @@ class LDataProductController extends Controller
                 'products.status',
                 'products.stock'
             )
+            ->where('bookings.status', 3)
             ->get();
-
-        $request->session()->put('data', $data);
 
 
         $jumlah = count($data);
@@ -77,13 +76,6 @@ class LDataProductController extends Controller
         $request->session()->put('data', $data);
         $request->session()->put('tglawal', $tglawal);
         $request->session()->put('tglakhir', $tglakhir);
-        if ($jumlah > 0) {
-            // Data ditemukan, lakukan sesuatu dengan data
-
-        } else {
-            // Tidak ada data ditemukan, berikan pesan kepada pengguna
-            $request->session()->flash('message', 'Tidak ada data ditemukan untuk bulan ini.');
-        }
 
         return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
     }

@@ -43,7 +43,7 @@
             <tr class="center">
                 <th width="30px">No</th>
                 <th>Gambar</th>
-
+                {{-- <th>Kategori</th> --}}
                 <th>Nama</th>
                 <th>Harga</th>
                 <th>Stok</th>
@@ -57,6 +57,7 @@
                 <tr>
                     <td>{{ $no + 1 }}</td>
                     <td> <img src="{{ $product->image }}" height="70"></td>
+                    {{-- <td>{{ $product->categoriesName }}</td> --}}
                     <td>{{ $product->productsName }}</td>
                     <td style="text-align: right">Rp.{{ number_format($product->price, 0) }}&nbsp;</td>
                     <td>{{ $product->stock }}</td>
