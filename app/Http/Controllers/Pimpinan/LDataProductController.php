@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class LDataProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $data = DB::table('products')
         //     ->join('categories', 'categories.id', '=', 'products.category_id')
@@ -40,9 +40,9 @@ class LDataProductController extends Controller
             )
             ->where('bookings.status', 3)
             ->get();
-        // dd($data);
 
-        $jumlah = 0;
+
+        $jumlah = count($data);
 
         return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
     }
@@ -73,15 +73,9 @@ class LDataProductController extends Controller
             ->whereBetween('products.updated_at', [$tglawal, $tglakhir])->get();
         // dd($data);
         $jumlah = $data->count();
-        if ($jumlah > 0) {
-            // Data ditemukan, lakukan sesuatu dengan data
-            $request->session()->put('data', $data);
-            $request->session()->put('tglawal', $tglawal);
-            $request->session()->put('tglakhir', $tglakhir);
-        } else {
-            // Tidak ada data ditemukan, berikan pesan kepada pengguna
-            $request->session()->flash('message', 'Tidak ada data ditemukan untuk bulan ini.');
-        }
+        $request->session()->put('data', $data);
+        $request->session()->put('tglawal', $tglawal);
+        $request->session()->put('tglakhir', $tglakhir);
 
         return view('pimpinan.LDataProduct', compact('data', 'jumlah'));
     }

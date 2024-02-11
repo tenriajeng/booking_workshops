@@ -11,30 +11,20 @@ use Illuminate\Http\Request;
 
 class LDataTransaksiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $data = Booking::latest()->get();
         // $jumlah = 0;
         // return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
 
-        $data = DB::table('bookings')
-            ->join('users', 'users.id', '=', 'bookings.user_id')
-            ->join('services', 'services.id', '=', 'bookings.services_id')
-            ->join('booking_products', 'booking_products.product_name', '=', 'bookings.product_name')
-            ->select(
-                'users.id',
-                'users.email',
-                'services.name',
-                'bookings.product_name',
-                'bookings.id',
-                'bookings.order_date',
-                'bookings.price',
-                'bookings.status',
-                'bookings.keterangan'
-            )
-            ->get();
+        $data = Booking::all();
+
         $jumlah = 0;
         // dd($data);
+
+        $request->session()->put('data', $data);
+        $request->session()->put('tglawal', null);
+        $request->session()->put('tglakhir', null);
 
         return view('pimpinan.LDataTransaksi', compact('data', 'jumlah'));
     }
@@ -76,11 +66,20 @@ class LDataTransaksiController extends Controller
 
     public function laporan(Request $request)
     {
-        $data = $request->session()->get('data');
+
         $tglawal = $request->session()->get('tglawal');
         $tglakhir = $request->session()->get('tglakhir');
 
+        $data = Booking::all();
+
+        if ($tglawal) {
+
+            $data = Booking::whereBetween('order_date', [$tglawal, $tglakhir])->get();
+        }
+
+
         $pdf = PDF::loadView('pimpinan.laporan.transaksiPDF', compact('data', 'tglawal', 'tglakhir'))->setPaper('folio', 'portrait');
+
         return $pdf->stream("Laporan Transaksi " . $tglawal . " - " . $tglakhir . ".pdf");
     }
 }

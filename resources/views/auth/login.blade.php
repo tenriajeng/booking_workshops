@@ -1,12 +1,33 @@
 @extends('layouts._app')
 
+@push('page_style')
+    <style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Adjust the alpha value for transparency */
+            border: 1px solid #ccc;
+            /* Add a border for better visibility */
+            border-radius: 10px;
+            /* Optional: Add rounded corners */
+        }
+
+
+
+        .card-body {
+            padding: 20px;
+            /* Optional: Add some padding to the card body */
+        }
+    </style>
+@endpush
 @section('content')
     <!-- Content -->
-    <section id="page-content" class="no-sidebar" style="height: 100vh;">
+    <section id="page-content" class="no-sidebar"
+        style="height: 100dvh; background-image: url('{{ asset('asset/car-body-polishing-process-at-the-detailing-worksh-2022-01-28-00-02-04-utc.jpg') }}'); background-size:
+        cover;">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto">
+                    <div class="card" style="border-radius: 10px;overflow: hidden;">
                         <div class="card-header">{{ __('Login') }}</div>
 
                         <div class="card-body">
@@ -16,7 +37,7 @@
                                 <div class="form-group row">
                                     <label for="email"
                                         class="col-md-4 col-form-label text-md-right">{{ __('E-Mail
-                                                                                                                                                                                                                                                    Address') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Address') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email"

@@ -67,7 +67,7 @@
                             $sold = 0;
                             $book_id = App\Models\Booking::where('status', 3)->get()->pluck('id')->toArray();
                             $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
-                                // ->where('product_id', $product->id)
+                                ->where('product_id', $product->productId)
                                 ->get()
                                 ->count();
                         @endphp
