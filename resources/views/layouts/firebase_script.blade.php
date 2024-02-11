@@ -1,9 +1,5 @@
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script type="module">
-    // Your web app's Firebase configuration
-    importScripts('https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js');
-    importScripts('https://www.gstatic.com/firebasejs/7.23.0/firebase-messaging.js');
-    
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
         apiKey: "AIzaSyDZSfIwc_uJ4ZxOPnSRykFhl-sI9A3-4Ik",
