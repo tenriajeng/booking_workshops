@@ -24,7 +24,6 @@ class LDataTransaksiController extends Controller
             ->select(
                 'users.id',
                 'users.email',
-                // 'products.name as productsName',  // Assuming 'products' table has a 'name' column
                 'services.name',
                 'bookings.product_name',
                 'bookings.id',

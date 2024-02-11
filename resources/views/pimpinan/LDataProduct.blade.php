@@ -56,18 +56,21 @@
                             </div>
                             <br>
                             <!--begin::Content-->
-                            @if ($jumlah > 0)
-                                <div class="card card-custom">
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            <h3 class="card-label">Laporan Data Product</h3>
-                                        </div>
-                                        <div class="card-title margin-left">
-                                            <a href="{{ route('laporan.product') }}" target="_blank"
-                                                class="btn btn-outline-danger">Export PDF</a>
-                                        </div>
+                            {{-- @if ($jumlah > 0) --}}
+                            <div class="card card-custom">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Laporan Data Product</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-title margin-left">
+                                        <a href="{{ route('laporan.product') }}" target="_blank"
+                                            class="btn btn-outline-danger">Export PDF</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @if (session('message'))
+                                        <p>{{ session('message') }}</p>
+                                    @else
                                         <!--begin: Datatable-->
                                         <table class="table table-separate table-head-custom collapsed" id="kt_datatable">
                                             <thead>
@@ -95,10 +98,7 @@
 
                                                             @php
                                                                 $sold = 0;
-                                                                $book_id = App\Models\Booking::where('status', 3)
-                                                                    ->get()
-                                                                    ->pluck('id')
-                                                                    ->toArray();
+                                                                $book_id = App\Models\Booking::where('status', 3)->get()->pluck('id')->toArray();
                                                                 $sold = App\Models\BookingProduct::whereIn('booking_id', $book_id)
                                                                     // ->where('productId', $product->id)
                                                                     ->get()
@@ -127,8 +127,8 @@
                                             </tfoot>
                                         </table>
                                         <!--end: Datatable-->
-                                    </div>
                                 </div>
+                            </div>
                             @endif
                             {{-- @if ($jumlah > 0) --}}
 
