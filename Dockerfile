@@ -17,4 +17,12 @@ ENV LOG_CHANNEL stderr
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-CMD ["/start.sh"]
+CMD ["/bin/bash", "/start.sh", \
+    "&&", "composer", "global", "require", "hirak/prestissimo", \
+    "&&", "composer", "install", "--no-dev", "--working-dir=/var/www/html", \
+    "&&", "php", "artisan", "config:cache", \
+    "&&", "php", "artisan", "route:cache", \
+    "&&", "php", "artisan", "migrate", "--force", \
+    "&&", "php", "artisan", "db:seed", \
+    "&&", "php", "artisan", "optimize", \
+    "&&", "chmod", "775", "/var/www/html/storage/logs/laravel.log"]
