@@ -16,75 +16,84 @@
                             <h3>Chose Date, Time And Parts if you need</h3>
                         </div>
                         <!-- <div class="card-body">
-                            <form method="POST" action="{{ route('book.store') }}"> -->
+                                                            <form method="POST" action="{{ route('book.store') }}"> -->
 
-                                <div class="card-body">
-                                    <form method="POST" action="{{ route('book.store') }}">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <div class="col-4">
-                                                <label for="example-date-input"
-                                                    class="col-form-label text-right">Date</label>
-                                                <input class="form-control" onchange="dateChange()" type="date"
-                                                    name="order_date" value="2021-10-11" id="example-date-input">
-                                            </div>
-                                            <div class="col-4" id="selectTime">
-                                                <label for="example-date-input"
-                                                    class="col-form-label text-right">Time</label>
-                                                <select id="inputState" name="schedule_id" class="form-control">
-                                                    <option> Choose Time </option>
-                                                    @foreach (App\Models\Schedule::all() as $schedule)
-                                                        <option value="{{ $schedule->id }}">
-                                                            {{ $schedule->start }} - {{ $schedule->end }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('book.store') }}">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="example-date-input" class="col-form-label text-right">Date</label>
+                                        <input class="form-control" onchange="dateChange()" type="date" name="order_date"
+                                            value="2021-10-11" id="example-date-input">
 
-                                            <!-- Jenis Service -->
-                                            <div class="col-4">
-                                                <label for="example-date-input" class="col-form-label text-right">Jenis
-                                                    Service</label>
-                                                <select id="inputState" name="services_id" class="form-control">
-                                                    <option> Choose Services </option>
-                                                    @foreach (App\Models\Services::all() as $services)
-                                                        <option value="{{ $services->id }}">
-                                                            {{ $services->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        @error('order_date')
+                                            <span style="color: red">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                                            <div class="col-4">
-                                                <label for="keterangan" class="col-form-label text-right">Keterangan</label>
-                                                <input class="form-control" type="text" name="keterangan" id="keterangan"
-                                                    placeholder="Keterangan">
-                                            </div>
+                                    <div class="col-4" id="selectTime">
+                                        <label for="example-date-input" class="col-form-label text-right">Time</label>
+                                        <select id="inputState" name="schedule_id" class="form-control">
+                                            <option> Choose Time </option>
+                                            @foreach (App\Models\Schedule::all() as $schedule)
+                                                <option value="{{ $schedule->id }}">
+                                                    {{ $schedule->start }} - {{ $schedule->end }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('schedule_id')
+                                            <span style="color: red">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Jenis Service -->
+                                    <div class="col-4">
+                                        <label for="example-date-input" class="col-form-label text-right">Jenis
+                                            Service</label>
+                                        <select id="inputState" name="services_id" class="form-control">
+                                            <option> Choose Services </option>
+                                            @foreach (App\Models\Services::all() as $services)
+                                                <option value="{{ $services->id }}">
+                                                    {{ $services->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('services_id')
+                                            <span style="color: red">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="keterangan" class="col-form-label text-right">Keterangan</label>
+                                        <input class="form-control" type="text" name="keterangan" id="keterangan"
+                                            placeholder="Keterangan">
+                                    </div>
 
 
-                                            <!-- Harga -->
-                                            {{-- <div class="col-4">
+                                    <!-- Harga -->
+                                    {{-- <div class="col-4">
                                             <label for="price" class="col-form-label text-right">Price</label>
                                             <input class="form-control" type="text" name="price" id="price"
                                                 placeholder="Price">
                                         </div> --}}
 
 
-                                            <div class="col-4">
-                                                <br>
-                                                <input type="submit" value="Book" class="btn btn-primary"
-                                                    style="margin-top: 13px">
-                                            </div>
-                                        </div>
-                                        <div id="item">
-                                        </div>
-                                    </form>
-                                    @include('user.book.product')
+                                    <div class="col-4">
+                                        <br>
+                                        <input type="submit" value="Book" class="btn btn-primary"
+                                            style="margin-top: 13px">
+                                    </div>
                                 </div>
+                                <div id="item">
+                                </div>
+                            </form>
+                            @include('user.book.product')
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     <!-- end: Page Content -->
     </div>
@@ -153,7 +162,7 @@
             }
             console.log(selectTime);
             $("#selectTime").append(
-                `<select id="inputState" name="time" class="form-control"><option >  Choose Time  </option> </select>`
+                `<select id="inputState" name="schedule_id" class="form-control"><option >  Choose Time  </option> </select>`
             );
 
             $.get(

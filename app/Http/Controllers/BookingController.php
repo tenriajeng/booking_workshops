@@ -40,9 +40,22 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        // dd($input);
+
+        $request->validate([
+            'order_date' => 'required|date',
+            'schedule_id' => 'required|exists:schedules,id',
+            'services_id' => 'required|exists:services,id',
+        ]);
+
+
+        // $bookingCount = Booking::whereDate('order_date', $input['order_date'])->count();
+
+        // if ($bookingCount >= 8) {
+        //     return "Maximum bookings reached for the selected date.";
+        // }
+
         // $input['schedule_id'] = $input['time'];
-        $input['schedule_id'] = $input['time'];
+        $input['schedule_id'] = $input['schedule_id'];
         $input['user_id'] = Auth::user()->id;
         $input['status'] = 1;
         $price = 0;

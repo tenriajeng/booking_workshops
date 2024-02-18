@@ -1,34 +1,20 @@
-# Use an official PHP runtime as a parent image
-FROM php:7.4-fpm
+FROM richarvey/nginx-php-fpm:1.9.1
 
-# Set the working directory in the container
-WORKDIR /var/www/html
-
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libzip-dev \
-    && docker-php-ext-install zip pdo_mysql \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Copy only the composer files and install dependencies
-COPY composer.json composer.lock ./
-RUN composer install --no-scripts --no-interaction --prefer-dist --optimize-autoloader --no-progress
-
-# Copy the rest of the application files to the container
 COPY . .
 
-# Set permissions for Laravel
-RUN chown -R www-data:www-data storage bootstrap/cache
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Run artisan commands
-RUN php artisan key:generate && php artisan config:cache
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
-# Expose port 9000 (if necessary; you might not need to expose it explicitly)
-# EXPOSE 9000
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# CMD ["php-fpm"]
+CMD ["/start.sh"]
