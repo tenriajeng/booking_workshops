@@ -9,3 +9,4 @@
 <link href="{{ asset('css/themes/layout/header/menu/light.css') }} " rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/themes/layout/brand/light.css') }} " rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/themes/layout/aside/light.css') }} " rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
