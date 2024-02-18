@@ -14,3 +14,6 @@ php artisan migrate --force
 
 echo "Running optimize..."
 php artisan optimize
+
+echo "Running dir permission..."
+sudo chmod 775 /var/www/html/storage/logs/laravel.log
