@@ -1,27 +1,20 @@
-FROM php:8.2-fpm
-ARG user
-ARG uid
+FROM richarvey/nginx-php-fpm:1.9.1
 
-# Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+COPY . .
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Copy Composer from Composer image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
- 
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Set working directory
-WORKDIR /var/www
-
-# Switch to the created user
-USER $user
+CMD ["/start.sh"]
