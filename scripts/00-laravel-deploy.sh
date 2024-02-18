@@ -19,6 +19,4 @@ echo "Running optimize..."
 php artisan optimize
 
 echo "Running dir permission..."
-su 
-chmod 775 ../storage/logs/laravel.log
-exit
+sudo chmod 775 /var/www/html/storage/logs/laravel.log
