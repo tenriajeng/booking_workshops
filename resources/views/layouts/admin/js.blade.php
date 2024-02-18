@@ -81,15 +81,15 @@
 </script>
 <!--end::Global Config-->
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-<script src="{{ asset('js/scripts.bundle.js') }}"></script>
+<script src="{{ secure_asset('plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ secure_asset('plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+<script src="{{ secure_asset('js/scripts.bundle.js') }}"></script>
 <!--end::Global Theme Bundle-->
 
 <!--begin::Page Vendors(used by this page)-->
 <!--end::Page Scripts-->
 @stack('page_script')
-<script src="{{ asset('js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
+<script src="{{ secure_asset('js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
 @if ($message = Session::get('sukses'))
     <script>
         Swal.fire({

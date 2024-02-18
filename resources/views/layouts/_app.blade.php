@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="icon" type="image/png" href="{{ asset('asset/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ secure_asset('asset/logo.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Document title -->
     <title> @stack('tap_title') {{ config('app.name', 'Marannu Mobil') }}</title>
@@ -28,7 +28,7 @@
         @yield('content')
 
         @include('layouts.user.footer')
-         
+
     </div>
     @include('layouts.firebase_script')
     @stack('page_script')

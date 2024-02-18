@@ -15,7 +15,7 @@
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
                 <div class="symbol-label" style="background-image:url({{ Auth::user()->avatar_url }})">
-                    {{-- {{ asset('media/users/300_21.jpg') }} --}}
+                    {{-- {{ secure_asset('media/users/300_21.jpg') }} --}}
                 </div>
                 {{-- <i class="symbol-badge bg-success"></i> --}}
             </div>

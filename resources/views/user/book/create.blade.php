@@ -2,7 +2,7 @@
 
 @push('page_style')
     @include('layouts.user.css')
-    <link href='{{ asset('user-template/plugins/datatables/datatables.min.css') }}' rel='stylesheet' />
+    <link href='{{ secure_asset('user-template/plugins/datatables/datatables.min.css') }}' rel='stylesheet' />
 @endpush
 
 @section('content')
@@ -16,7 +16,7 @@
                             <h3>Chose Date, Time And Parts if you need</h3>
                         </div>
                         <!-- <div class="card-body">
-                                                            <form method="POST" action="{{ route('book.store') }}"> -->
+                                                                <form method="POST" action="{{ route('book.store') }}"> -->
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('book.store') }}">
@@ -101,8 +101,8 @@
 
 @push('page_script')
     @include('layouts.user.js')
-    <script src="{{ asset('user-template/plugins/popper/popper.min.js') }}"></script>
-    <script src='{{ asset('user-template/plugins/datatables/datatables.min.js') }}'></script>
+    <script src="{{ secure_asset('user-template/plugins/popper/popper.min.js') }}"></script>
+    <script src='{{ secure_asset('user-template/plugins/datatables/datatables.min.js') }}'></script>
     <script>
         $(document).ready(function() {
             var table = $('#datatable').DataTable();

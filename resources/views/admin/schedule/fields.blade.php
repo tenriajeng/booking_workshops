@@ -48,16 +48,16 @@
     </div>
 </div>
 @push('page_style')
-    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('page_script')
-    <script src="{{ asset('js/pages/custom/user/edit-user.js') }}"></script>
-    <script src="{{ asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
-    <script src="{{ asset('js/pages/crud/forms/editors/summernote.js') }}"></script>
+    <script src="{{ secure_asset('js/pages/custom/user/edit-user.js') }}"></script>
+    <script src="{{ secure_asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
+    <script src="{{ secure_asset('js/pages/crud/forms/editors/summernote.js') }}"></script>
     <script>
         function formSubmit(value) {
             document.getElementById("status").value = value;

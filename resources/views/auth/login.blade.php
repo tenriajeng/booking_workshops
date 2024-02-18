@@ -22,7 +22,7 @@
 @section('content')
     <!-- Content -->
     <section id="page-content" class="no-sidebar"
-        style="height: 100dvh; background-image: url('{{ asset('asset/car-body-polishing-process-at-the-detailing-worksh-2022-01-28-00-02-04-utc.jpg') }}'); background-size:
+        style="height: 100dvh; background-image: url('{{ secure_asset('asset/car-body-polishing-process-at-the-detailing-worksh-2022-01-28-00-02-04-utc.jpg') }}'); background-size:
         cover;">
         <div class="container">
             <div class="row">
@@ -37,7 +37,7 @@
                                 <div class="form-group row">
                                     <label for="email"
                                         class="col-md-4 col-form-label text-md-right">{{ __('E-Mail
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Address') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Address') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email"

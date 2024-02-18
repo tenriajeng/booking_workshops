@@ -5,17 +5,17 @@
     <div id="slider" class="inspiro-slider slider-fullscreen dots-creative" data-fade="true">
         <!-- Slide 1 -->
         <div class="slide kenburns"
-            data-bg-image="{{ asset('asset/car-body-polishing-process-at-the-detailing-worksh-2022-01-28-00-02-04-utc.jpg') }}">
+            data-bg-image="{{ secure_asset('asset/car-body-polishing-process-at-the-detailing-worksh-2022-01-28-00-02-04-utc.jpg') }}">
             <div class="bg-overlay"></div>
             <div class="container">
                 <div class="slide-captions text-center text-light">
                     <!-- Captions -->
                     @auth
-                    <h1>Selamat Datang di Car Workshop Booking
+                        <h1>Selamat Datang di Car Workshop Booking
 
-                        {{ auth()->user()->name }}
-                    </h1>
-                    <!-- <p>Your roles: {{ auth()->user()->getRoleNames()->implode(', ') }}</p> -->
+                            {{ auth()->user()->name }}
+                        </h1>
+                        <!-- <p>Your roles: {{ auth()->user()->getRoleNames()->implode(', ') }}</p> -->
                     @endauth
 
                     <p>

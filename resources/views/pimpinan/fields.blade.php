@@ -74,7 +74,7 @@
     <label class="col-form-label col-lg-3 col-sm-3 col-3 text-right">Avatar *</label>
     <div class="col-lg-9 col-md-9 col-sm-9 col-9">
         <div class="image-input image-input-empty image-input-outline" id="kt_user_edit_avatar"
-            style="background-image: url({{ isset($data->avatar_url) ? asset('Image/User/' . $data->avatar_url) : asset('media/users/blank.png') }})">
+            style="background-image: url({{ isset($data->avatar_url) ? secure_asset('Image/User/' . $data->avatar_url) : secure_asset('media/users/blank.png') }})">
             <div class="image-input-wrapper"></div>
             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                 data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
@@ -91,15 +91,15 @@
 </div>
 
 @push('page_style')
-    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ secure_asset('css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('page_script')
-    <script src="{{ asset('js/pages/custom/user/edit-user.js') }}"></script>
-    <script src="{{ asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
+    <script src="{{ secure_asset('js/pages/custom/user/edit-user.js') }}"></script>
+    <script src="{{ secure_asset('js/pages/crud/forms/validation/form-widgets.js') }}"></script>
     <script>
         // Class definition
         var KTSelect2 = function() {

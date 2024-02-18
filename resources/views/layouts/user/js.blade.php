@@ -4,7 +4,7 @@
     @include('layouts.firebase_script')
 @endauth
 <!--Plugins-->
-<script src="{{ asset('user-template/js/jquery.js') }}"></script>
-<script src="{{ asset('user-template/js/plugins.js') }}"></script>
+<script src="{{ secure_asset('user-template/js/jquery.js') }}"></script>
+<script src="{{ secure_asset('user-template/js/plugins.js') }}"></script>
 <!--Template functions-->
-<script src="{{ asset('user-template/js/functions.js') }}"></script>
+<script src="{{ secure_asset('user-template/js/functions.js') }}"></script>

@@ -6,10 +6,10 @@
             <div id="logo">
                 <a href="{{ url('/') }}">
                     <span class="logo-default">
-                        <img height="90" style="padding: 20px" src="{{ asset('asset/logo.png') }}">
+                        <img height="90" style="padding: 20px" src="{{ secure_asset('asset/logo.png') }}">
                     </span>
                     <span class="logo-dark">
-                        <img height="90" style="padding: 20px" src="{{ asset('asset/logo.png') }}">
+                        <img height="90" style="padding: 20px" src="{{ secure_asset('asset/logo.png') }}">
                     </span>
                 </a>
             </div>

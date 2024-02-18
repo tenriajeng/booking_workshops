@@ -16,7 +16,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <img style="width: 100%" src="{{ asset('Screen Shot 2022-02-23 at 6.31.43 PM.png') }}" alt="">
+                    <img style="width: 100%" src="{{ secure_asset('Screen Shot 2022-02-23 at 6.31.43 PM.png') }}"
+                        alt="">
                 </div>
             </div>
             <!--end::Content-->
