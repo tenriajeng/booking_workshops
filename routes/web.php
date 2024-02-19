@@ -21,8 +21,8 @@ Route::get('/schedule/{date}', [App\Http\Controllers\HomeController::class, 'sch
 Route::get('/guestproduct', [App\Http\Controllers\ProductController::class, 'index'])->name('guestproduct');
 
 // notif test
-    Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
-    Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification');
+Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
+Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification');
 
 
 
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['role:pimpinan', 'auth'], 'prefix' => 'pimpinan']
     Route::get('/Ltransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'index'])->name('LDtransaksi');
 
     Route::get('/laporan_pengguna', [App\Http\Controllers\Pimpinan\LDataPenggunaController::class, 'laporan'])->name('laporan.pengguna');
-    
+
     Route::get('/laporan_transaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'laporan'])->name('laporan.transaksi');
     Route::get('/laporantransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'cek']);
     Route::post('/laporantransaksi', [App\Http\Controllers\Pimpinan\LDataTransaksiController::class, 'cek']);
@@ -53,13 +53,13 @@ Route::group(['middleware' => ['role:pimpinan', 'auth'], 'prefix' => 'pimpinan']
 
 Route::group(['middleware' => ['role:user', 'auth'], 'prefix' => 'account'], function () {
     Route::get('/book', [App\Http\Controllers\HomeController::class, 'book'])->name('book');
-    Route::get('/book/{id}', [App\Http\Controllers\user\BookingController::class, 'show'])->name('book.show');
+    Route::get('/book/{id}', [App\Http\Controllers\User\BookingController::class, 'show'])->name('book.show');
     Route::post('/book', [App\Http\Controllers\BookingController::class, 'store'])->name('book.store');
 
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'book'])->name('profile');
-    Route::get('/', [App\Http\Controllers\user\HomeController::class, 'index'])->name('user.home');
-    Route::get('/history', [App\Http\Controllers\user\BookingController::class, 'index'])->name('user.history');
-    Route::get('/product', [App\Http\Controllers\user\ProductController::class, 'index'])->name('user.product');
+    Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
+    Route::get('/history', [App\Http\Controllers\User\BookingController::class, 'index'])->name('user.history');
+    Route::get('/product', [App\Http\Controllers\User\ProductController::class, 'index'])->name('user.product');
 });
 
 // Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
